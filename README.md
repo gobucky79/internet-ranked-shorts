@@ -16,7 +16,8 @@ Needs Python 3 + Pillow + ffmpeg, and the Poppins Bold font at `/usr/share/fonts
 
 ## Daily routine (2 Shorts a day)
 
-1. **Pick 2 fresh topics.** Read `HISTORY.md` and never repeat a topic or reuse an item. Rotate categories
+0. **vidIQ check (before any topic or script work)** — see "vidIQ" below. Read `INSIGHTS.md` either way.
+1. **Pick 2 fresh topics.** Prefer topics backed by today's vidIQ breakouts or by what INSIGHTS.md says works. Read `HISTORY.md` and never repeat a topic or reuse an item. Rotate categories
    (everyday objects, the human body, travel, food, animals, tech, history, money, school/work life, "relatable moments").
    The two topics of a day should be from different categories.
 2. **Research every claim** with web search before writing it. Only use items you can confirm from a reliable source.
@@ -53,6 +54,24 @@ Needs Python 3 + Pillow + ffmpeg, and the Poppins Bold font at `/usr/share/fonts
 - `animate(img, d, lt, e)`: optional. `d` draws on a transparent overlay (use RGBA fills). `e` = seconds since the `why`
   phrase started (negative before it) — trigger the "payoff" animation when `e >= 0`. Return `None`, a new image, or
   `(image_or_None, new_focus)`. Keep animations simple: something moves, flows, lights up, or appears.
+
+## vidIQ (one 5-credit call per day, max)
+
+The free plan gives 150 credits/month (refills monthly); almost every vidIQ tool costs 5 credits. So: **at most ONE paid
+vidIQ call per daily run.** First call `vidiq_balance`. If fewer than 5 credits remain, skip vidIQ and rely on INSIGHTS.md.
+Never spend credits on title/thumbnail scoring, voiceovers or anything else unless the creator asks.
+
+- **Mon–Sat — breakout topics:** `vidiq_outliers` with `contentType: "short"`, `publishedWithin: "thisMonth"`, `limit: 25`,
+  and a `keyword` rotating by weekday: Mon "ranking", Tue "things you never noticed", Wed "did you know", Thu "facts about",
+  Fri "secret features", Sat "hidden meaning". Pick topics inspired by the winners — never copy a video; make our own 4-item
+  ranking on the same *theme*. Append the 5 most useful findings (title, views, outlier score, why it works) under
+  "Breakouts" in INSIGHTS.md with the date; keep only the latest ~30 lines there.
+- **Sunday — our own performance:** find the channel with `vidiq_user_channels` (the creator's channel is Internet Ranked,
+  @InternetRanked-x4p), then one `vidiq_channel_analytics` call: last 7 days, `dimensions: ["video"]`,
+  metrics views, engagedViews, averageViewPercentage, likes, subscribersGained, sort "-views", maxResults 25.
+  Write plain takeaways under "What works for us" in INSIGHTS.md (which topics/hooks/categories held viewers best,
+  which flopped) and apply them. If the channel isn't authorized in vidIQ, tell the creator in one line and skip.
+- Commit INSIGHTS.md changes along with the topic files.
 
 ## Platform notes
 
