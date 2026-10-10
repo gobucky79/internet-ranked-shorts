@@ -17,9 +17,9 @@ Needs Python 3 + Pillow + ffmpeg, and the Poppins Bold font at `/usr/share/fonts
 ## Daily routine (1 Short a day)
 
 0. **vidIQ check (before any topic or script work)** — see "vidIQ" below. Read `INSIGHTS.md` either way.
-1. **Pick 1 fresh topic** — the best one you can find. Prefer topics backed by today's vidIQ breakouts or by what INSIGHTS.md says works. Read `HISTORY.md` and never repeat a topic or reuse an item. Rotate categories
-   (everyday objects, the human body, travel, food, animals, tech, history, money, school/work life, "relatable moments").
-   Don't use the same category two days in a row (check HISTORY.md).
+1. **Pick 1 fresh topic** — the best one you can find — from the next category in the **Top 5 rotation** below
+   (look at the last entry in HISTORY.md and take the category after it; after #5 go back to #1).
+   Prefer topics backed by today's vidIQ breakouts or by what INSIGHTS.md says works.
 2. **Research every claim** with web search before writing it. Only use items you can confirm from a reliable source.
    No myths, no "fun facts" that are actually false. If an item is disputed, drop it.
 3. **Write `topics/<slug>.py`** (see rules below), then run `preview` and *look at the image*.
@@ -32,6 +32,25 @@ Needs Python 3 + Pillow + ffmpeg, and the Poppins Bold font at `/usr/share/fonts
 7. **When the MP3 arrives:** run `video`. Check the printed timing: each `num` line must be the "Number X:" phrase
    (short, ~0.6–0.9s). Run `sheet` and look at it. Then send the MP4.
    If the creator changed the wording when recording, update the topic text to match what they said before rendering.
+
+## Top 5 rotation (the most-viewed Shorts niches, in our ranking format)
+
+Chosen from Shorts view-share data (Oct 2026: entertainment ~17–32% of all Shorts views, gaming ~21%, tutorials/hacks ~18%;
+the all-time top Shorts are dominated by food, transformations, skits and stunts; animals rate "very high" viral potential).
+Every Short is still a fact-checked 4-item ranking. Record the category in HISTORY.md (`[cat N]`).
+
+1. **Entertainment / relatable** — relatable moments, wildest world records, craziest stunts, "things everyone has done".
+   e.g. "Ranking things everyone does but never admits", "Ranking the most insane world records".
+2. **Gaming** — hidden tricks game developers used, gaming myths that were true, how classic games fooled you.
+   Name games in the script if needed, but **never draw real game characters, logos or screenshots** — draw generic
+   controllers, screens, pixel shapes.
+3. **Life hacks / how-to** — hacks that actually work (test claims via reliable sources; no dangerous hacks),
+   built-in features of everyday things people don't use.
+4. **Food** — food facts, foods that aren't what you think, why foods are made/packaged the way they are.
+5. **Animals** — animal abilities that sound fake, animals with secret superpowers, pet behaviors explained.
+
+Format ideas that fit all five (vidIQ trend formats): Top X, Ranking Every, Tier List, Cheap vs Expensive,
+Fake vs Real, Guess The…. Stay within the engine's 4-item ranking layout.
 
 ## Quality rules (from MrBeast's advice — apply every day)
 
