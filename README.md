@@ -1,6 +1,6 @@
 # Internet Ranked – Shorts engine
 
-Makes ranking-style YouTube Shorts for the channel **Internet Ranked**: 1080×1920, a 4-slot ranking list that fills #4 → #1,
+Makes one ranking-style YouTube Short a day for the channel **Internet Ranked**: 1080×1920, a 4-slot ranking list that fills #4 → #1,
 an animated flat illustration per item with a pulsing highlight, punchy captions, pop sounds on reveals, and a looping ending.
 The creator records the voiceover; the engine times everything to the audio automatically.
 
@@ -14,22 +14,22 @@ python3 engine.py sheet   out.mp4 out.png                       # 10-frame conta
 Needs Python 3 + Pillow + ffmpeg, and the Poppins Bold font at `/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf`.
 `topics/plane_features.py` is the complete reference topic — copy its structure.
 
-## Daily routine (2 Shorts a day)
+## Daily routine (1 Short a day)
 
 0. **vidIQ check (before any topic or script work)** — see "vidIQ" below. Read `INSIGHTS.md` either way.
-1. **Pick 2 fresh topics.** Prefer topics backed by today's vidIQ breakouts or by what INSIGHTS.md says works. Read `HISTORY.md` and never repeat a topic or reuse an item. Rotate categories
+1. **Pick 1 fresh topic** — the best one you can find. Prefer topics backed by today's vidIQ breakouts or by what INSIGHTS.md says works. Read `HISTORY.md` and never repeat a topic or reuse an item. Rotate categories
    (everyday objects, the human body, travel, food, animals, tech, history, money, school/work life, "relatable moments").
-   The two topics of a day should be from different categories.
+   Don't use the same category two days in a row (check HISTORY.md).
 2. **Research every claim** with web search before writing it. Only use items you can confirm from a reliable source.
    No myths, no "fun facts" that are actually false. If an item is disputed, drop it.
-3. **Write `topics/<slug>.py`** for each (see rules below), then run `preview` and *look at the image*.
+3. **Write `topics/<slug>.py`** (see rules below), then run `preview` and *look at the image*.
    Fix any drawing that is unclear, off-canvas, or doesn't read as the object at a glance.
 4. **Run `thumb`**, look at it. It shows the #1 item big with its `focus` spot circled and arrowed — make sure that spot
    is the thing the #1 tease is about and that the drawing reads instantly at small size.
-5. **Send the creator**, for each Short: the voiceover script (from `script`), the title, description, tags, and the thumbnail PNG.
-   Remind them: generate at ~1.1× speed, and send back the MP3s (one per Short; say which is which).
+5. **Send the creator**: the voiceover script (from `script`), the title, description, tags, and the thumbnail PNG.
+   Remind them: generate at ~1.1× speed and send back the MP3.
 6. **Commit and push** the topic files and the HISTORY.md entries.
-7. **When the MP3s arrive:** run `video`. Check the printed timing: each `num` line must be the "Number X:" phrase
+7. **When the MP3 arrives:** run `video`. Check the printed timing: each `num` line must be the "Number X:" phrase
    (short, ~0.6–0.9s). Run `sheet` and look at it. Then send the MP4.
    If the creator changed the wording when recording, update the topic text to match what they said before rendering.
 
@@ -39,8 +39,7 @@ Needs Python 3 + Pillow + ffmpeg, and the Poppins Bold font at `/usr/share/fonts
    No intro, no setup, no "today we're going to". Every sentence must be about the topic — cut anything that isn't.
 2. **Quality over quantity.** One great Short beats two average ones; average videos never get pushed. Before sending,
    rate each topic honestly: are all 4 items genuinely surprising, and is #1 a real "wait, what?" Would *you* stop scrolling?
-   If a topic isn't clearly great, replace it. If you can't find a second great topic today, ship ONE and say so in one line.
-   Never ship filler just to hit the count.
+   If the topic isn't clearly great, replace it with a better one. Never ship filler.
 3. **Thumbnail = simple + one emotion + curiosity.** Understood in under a second while scrolling. One subject (the #1 item,
    drawn big), at most ~4 words of text, and a tease that makes them wonder "what happened / why?" if they don't click.
 4. **Title = the same promise as the thumbnail**, and the video's first line pays it off.
