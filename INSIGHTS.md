@@ -21,4 +21,9 @@
   → New Top 5 rotation: Gaming, Animals, Sports & records, Tech & gadgets, Weird history & science.
 
 ## Breakouts
-(filled by daily vidIQ checks)
+- 2026-10-10 (Shorts outliers this month, keyword "tech secrets hidden features" for cat 4):
+  - "95% of drivers don't know about these hidden car features!" (GarageBella) – 11.9M views, 282x outlier, ~25K vph. "X% don't know" + hidden-features-on-something-you-own is the strongest tech/gadget hook right now; a copy on another channel got 475K.
+  - "Hidden Storage Secrets or Clever Tricks? 😲 #gadgets" (ZoomFizz) – 3.5M, 608x; 6-second gadget-reveal loops. Question-style titles ("secret or trick?") pull curiosity.
+  - "HIDDEN PS5 Controller features 🤯" (Chocowich) – 80K in hours, ~3.7K vph. Hidden features of a device people hold every day → good for gaming/tech days.
+  - "Hidden Secrets & Facts In GTA V PART 5xx" – long-running numbered series, steady 20–35K each. Series format keeps working.
+  - Generic phone "hidden camera features" Shorts were small (~27K). Cars/controllers beat phones for "hidden features" this month.

@@ -8,3 +8,4 @@ Never repeat a topic or reuse an item. Newest at the bottom. Format: date – sl
 - 2026-10-08 – (manual) – Ketchup Was Medicine?!
 - 2026-10-09 – tiny_holes – Ranking Tiny Holes You Never Noticed – padlock drain hole, airplane window breather hole, extra sneaker eyelet, pen cap hole
 - 2026-10-09 – plane_features – [cat 3] – Secret Plane Features Nobody Tells You About – armrest button, triangle window sticker, lavatory ashtray, dimmed landing lights
+- 2026-10-10 – hidden_car_features – [cat 4] – Hidden Car Features Most Drivers Never Use – rearview mirror night tab, metal key hidden in key fob, hold unlock to roll down windows, glowing trunk release handle
