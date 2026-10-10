@@ -35,19 +35,34 @@ Needs Python 3 + Pillow + ffmpeg, and the Poppins Bold font at `/usr/share/fonts
 
 ## Top 5 rotation (the most-viewed Shorts niches, in our ranking format)
 
-Chosen from Shorts view-share data (Oct 2026: entertainment ~17–32% of all Shorts views, gaming ~21%, tutorials/hacks ~18%;
-the all-time top Shorts are dominated by food, transformations, skits and stunts; animals rate "very high" viral potential).
-Every Short is still a fact-checked 4-item ranking. Record the category in HISTORY.md (`[cat N]`).
+Chosen from vidIQ data, 2026-10-10: top 50 English Shorts by views (last 30 days) + top 50 English Shorts outliers this month
++ 3 keyword checks, ~190 Shorts grouped by niche. Views found per reachable niche: gaming ~479M, animals ~461M,
+sports & records ~259M, tech & gadgets ~190M, weird history/science ~169M (food 167M just missed; family/kids, faith
+and kindness-skit niches were bigger but need real people on camera). Every Short is still a fact-checked 4-item ranking.
+Record the category in HISTORY.md (`[cat N]`).
 
-1. **Entertainment / relatable** — relatable moments, wildest world records, craziest stunts, "things everyone has done".
-   e.g. "Ranking things everyone does but never admits", "Ranking the most insane world records".
-2. **Gaming** — hidden tricks game developers used, gaming myths that were true, how classic games fooled you.
+1. **Gaming** — the #1 niche by raw views (Minecraft, Roblox and indie-horror Shorts led the feed). Hidden tricks game
+   developers used, gaming myths that were true, how classic games fooled you, gaming world records.
+   e.g. "Ranking the sneakiest tricks game developers used", "Ranking the most impossible gaming world records".
    Name games in the script if needed, but **never draw real game characters, logos or screenshots** — draw generic
    controllers, screens, pixel shapes.
-3. **Life hacks / how-to** — hacks that actually work (test claims via reliable sources; no dangerous hacks),
-   built-in features of everyday things people don't use.
-4. **Food** — food facts, foods that aren't what you think, why foods are made/packaged the way they are.
-5. **Animals** — animal abilities that sound fake, animals with secret superpowers, pet behaviors explained.
+2. **Animals** — the deepest niche (most breakout Shorts: pets, wildlife, "animal facts" channels). Animal abilities that
+   sound fake, animals with secret superpowers, pet behaviors explained.
+   e.g. "Ranking animal abilities that sound fake", "Ranking things your cat does that actually mean something".
+   Draw generic animals; no famous pet accounts or cartoon mascots.
+3. **Sports & records** — athletes, extreme sports and "records that will never be broken" all pulled big views.
+   e.g. "Ranking sports records that will never be broken", "Ranking the fastest things a human has ever done".
+   **Never draw real athletes' faces, team logos or league marks** — draw generic players, jerseys with plain numbers,
+   balls, stopwatches, podiums.
+4. **Tech & gadgets** — phone-brand rivalry and clever gadgets went viral. Hidden phone/computer features, tech that's
+   older than you think, why gadgets are designed the way they are.
+   e.g. "Ranking hidden phone features nobody uses", "Ranking everyday tech that's way older than you think".
+   Name brands in the script if needed, but **no brand logos or exact product designs** — draw generic phones, laptops,
+   chargers.
+5. **Weird history & science** — fact-story channels (Zack D. Films style) and "ranking physics" Shorts broke out.
+   Bizarre history, inventions that went wrong, science that sounds fake.
+   e.g. "Ranking the scariest early inventions", "Ranking history facts that sound made up".
+   Draw objects and generic figures, not real historical people's likenesses or photos; no gore.
 
 Format ideas that fit all five (vidIQ trend formats): Top X, Ranking Every, Tier List, Cheap vs Expensive,
 Fake vs Real, Guess The…. Stay within the engine's 4-item ranking layout.
