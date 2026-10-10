@@ -275,24 +275,32 @@ def render_video(T, audio, out):
     print("wrote", out, f"{tl['dur']:.1f}s")
 
 def render_thumb(T, out):
+    """Simple, single-subject thumbnail (MrBeast rule: understood instantly, one emotion, curiosity):
+    two short text lines, the #1 item drawn BIG with its key spot circled and an arrow, and the #1 tease banner."""
     sc_ = Scenes(T); im = make_bg(T); d = ImageDraw.Draw(im, "RGBA")
-    l1, big, l3 = T.THUMB_TEXT
-    d.text((540, 240), l1.upper(), font=fit_font(l1.upper(), 1000, 128), fill=WHITE, stroke_width=14, stroke_fill=(0,0,0), anchor="mm")
-    d.text((540, 390), big.upper(), font=fit_font(big.upper(), 1000, 180), fill=YEL, stroke_width=16, stroke_fill=(0,0,0), anchor="mm")
-    d.text((540, 540), l3.upper(), font=fit_font(l3.upper(), 1000, 96), fill=WHITE, stroke_width=12, stroke_fill=(0,0,0), anchor="mm")
-    pos = [(300, 900), (780, 900), (300, 1330), (780, 1330)]
-    for (cx, cy), it in zip(pos, sorted(T.ITEMS, key=lambda x: -x["rank"])):
-        ic = sc_.icon(it["rank"]); dd = ImageDraw.Draw(ic); fp = it.get("focus")
-        if fp: dd.ellipse((fp[0]-48, fp[1]-48, fp[0]+48, fp[1]+48), outline=RED+(255,), width=14)
-        sz = 430; ic = ic.resize((sz, sz), Image.LANCZOS)
-        sh = Image.new("RGBA", ic.size, (0,0,0,0)); sh.putalpha(ic.getchannel("A").point(lambda a: int(a*0.5)))
-        sh = sh.filter(ImageFilter.GaussianBlur(12))
-        im.paste(Image.new("RGB", ic.size, (0,0,0)), (cx-sz//2+10, cy-sz//2+14), sh); im.paste(ic, (cx-sz//2, cy-sz//2), ic)
+    l1, big = T.THUMB_TEXT[0], T.THUMB_TEXT[1]
+    d.text((540, 215), l1.upper(), font=fit_font(l1.upper(), 1000, 130), fill=WHITE, stroke_width=14, stroke_fill=(0,0,0), anchor="mm")
+    d.text((540, 385), big.upper(), font=fit_font(big.upper(), 1000, 190), fill=YEL, stroke_width=16, stroke_fill=(0,0,0), anchor="mm")
+    top = next(it for it in T.ITEMS if it["rank"] == 1)
+    ic = sc_.icon(1); dd = ImageDraw.Draw(ic); fp = top.get("focus")
+    if fp: dd.ellipse((fp[0]-60, fp[1]-60, fp[0]+60, fp[1]+60), outline=RED+(255,), width=16)
+    sz = 960; ic = ic.resize((sz, sz), Image.LANCZOS); x0, y0 = 540 - sz//2, 1080 - sz//2
+    sh = Image.new("RGBA", ic.size, (0,0,0,0)); sh.putalpha(ic.getchannel("A").point(lambda a: int(a*0.55)))
+    sh = sh.filter(ImageFilter.GaussianBlur(16))
+    im.paste(Image.new("RGB", ic.size, (0,0,0)), (x0+12, y0+18), sh); im.paste(ic, (x0, y0), ic)
     d = ImageDraw.Draw(im, "RGBA")
-    d.ellipse((880, 1100, 1030, 1250), fill=RED, outline=(0,0,0), width=8)
-    d.text((955, 1175), "#1", font=F(78), fill=WHITE, anchor="mm", stroke_width=4, stroke_fill=(0,0,0))
-    d.rounded_rectangle((60, 1610, 1020, 1790), radius=36, fill=RED, outline=(0,0,0), width=8)
-    d.text((540, 1700), T.THUMB_BANNER.upper(), font=fit_font(T.THUMB_BANNER.upper(), 920, 80), fill=WHITE, anchor="mm", stroke_width=6, stroke_fill=(0,0,0))
+    if fp:  # red arrow pointing at the circled spot, coming from the emptier side
+        hx, hy = x0 + fp[0]*sz/800, y0 + fp[1]*sz/800
+        sx = 1 if hx < 540 else -1
+        tx, ty = hx + sx*230, hy + 170
+        ang = math.atan2(hy - ty, hx - tx); ex, ey = hx - math.cos(ang)*95, hy - math.sin(ang)*95
+        d.line((tx, ty, ex, ey), fill=(0,0,0), width=44); d.line((tx, ty, ex, ey), fill=RED, width=28)
+        for col, w in (((0,0,0), 18), (RED, 0)):
+            L = 70 + w; pts = [(ex + math.cos(ang)*L*0.6, ey + math.sin(ang)*L*0.6),
+                   (ex + math.cos(ang+2.4)*L, ey + math.sin(ang+2.4)*L), (ex + math.cos(ang-2.4)*L, ey + math.sin(ang-2.4)*L)]
+            d.polygon(pts, fill=col)
+    d.rounded_rectangle((60, 1630, 1020, 1800), radius=36, fill=RED, outline=(0,0,0), width=8)
+    d.text((540, 1715), T.THUMB_BANNER.upper(), font=fit_font(T.THUMB_BANNER.upper(), 920, 84), fill=WHITE, anchor="mm", stroke_width=6, stroke_fill=(0,0,0))
     im.save(out); print("wrote", out)
 
 def render_preview(T, out):
