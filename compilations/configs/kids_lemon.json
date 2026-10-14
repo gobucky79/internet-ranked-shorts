@@ -1,0 +1,44 @@
+{
+  "title2": "KIDS TRYING LEMON",
+  "clips": [
+    [
+      4,
+      "Unbothered king",
+      "src/adric.mp4",
+      9.0,
+      14.0
+    ],
+    [
+      3,
+      "Smiling through it",
+      "src/alanna.mp4",
+      11.0,
+      17.6
+    ],
+    [
+      2,
+      "Instant pucker",
+      "src/zara.mp4",
+      1.2,
+      6.2
+    ],
+    [
+      1,
+      "The second bite",
+      "src/can.mp4",
+      13.2,
+      20.15
+    ]
+  ],
+  "replay": [
+    "src/can.mp4",
+    16.8,
+    18.8
+  ],
+  "thumb": [
+    "src/can.mp4",
+    17.4
+  ],
+  "tease": "#1 BROKE THE METER",
+  "out": "out/kids_lemon"
+}
