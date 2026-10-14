@@ -40,5 +40,7 @@
     17.4
   ],
   "tease": "#1 BROKE THE METER",
-  "out": "out/kids_lemon"
+  "out": "out/kids_lemon",
+  "final_hit": 3.5,
+  "tease_tntl": "NOBODY SURVIVES #1"
 }
