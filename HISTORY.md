@@ -11,3 +11,7 @@ Never repeat a topic or reuse an item. Newest at the bottom. Format: date – sl
 - 2026-10-10 – hidden_car_features – [cat 4] – Hidden Car Features Most Drivers Never Use – rearview mirror night tab, metal key hidden in key fob, hold unlock to roll down windows, glowing trunk release handle
 - 2026-10-14 – kids_fails (compilation, compilations/kids_fails.py) – Ranking Funniest Kids Fails – toddler belly flop onto pool float, trampoline "flip" fail, kid steals birthday candles, mega ramp drop-in wipeout (+ slow-mo replay). Clips: The Wingrove Family, Lively Lewis Show, Narely Rockolas, J House jr.
 - 2026-10-14 – kids_lemon (laugh meter, compilations/laughmeter.py + configs/kids_lemon.json) – Ranking Funniest Kids Trying Lemon – unbothered baby, smiling through it, instant pucker, the second bite meltdown (+ slow-mo). Clips: Rania Ziki, Alanna & Ivor, Sam & Afra Diaries, The CAN Family
+- 2026-10-14 – kids_halloween – [slot 1] – Ranking Funniest Kids Halloween Moments – clips sent (Short dog, Merrick Hanna x2, Javi's Family Adventures)
+- 2026-10-14 – kids_siblings – [slot 3] – Ranking Funniest Kids Sibling Moments – clips sent (Noya and Shir, robin whitsett, Javi's Family Adventures, Diary of 4)
+- 2026-10-14 – kids_sports_fails – [slot 5] – Ranking Funniest Kids Sports Fails – clips sent (Granite Park Sports Complex, backwardks, KID DE GEA, CDFootballFilms)
+- 2026-10-14 – kids_pranks – [slot 4] – Ranking Funniest Kids Pranks – clips sent (AsmrLinastar, Diary of 4, The Trench Family, Neil Henry)

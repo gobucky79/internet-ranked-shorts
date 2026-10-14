@@ -27,3 +27,7 @@
   - "HIDDEN PS5 Controller features 🤯" (Chocowich) – 80K in hours, ~3.7K vph. Hidden features of a device people hold every day → good for gaming/tech days.
   - "Hidden Secrets & Facts In GTA V PART 5xx" – long-running numbered series, steady 20–35K each. Series format keeps working.
   - Generic phone "hidden camera features" Shorts were small (~27K). Cars/controllers beat phones for "hidden features" this month.
+
+## Audience
+- 2026-10-14: the creator picked one audience for everything: **funny-video fans** (teens/adults scrolling for laughs).
+  All Shorts are now "Ranking Funniest ___" compilations in the laugh-meter format; fact Shorts are retired.

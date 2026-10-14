@@ -1,84 +1,66 @@
 # Internet Ranked – Shorts engine
 
-Makes one ranking-style YouTube Short a day for the channel **Internet Ranked**: 1080×1920, a 4-slot ranking list that fills #4 → #1,
-an animated flat illustration per item with a pulsing highlight, punchy captions, pop sounds on reveals, and a looping ending.
-The creator records the voiceover; the engine times everything to the audio automatically.
+**Audience (decided 2026-10-14): funny-video fans** — teens and adults scrolling for laughs. Every Short is a
+"Ranking Funniest ___" compilation in the **laugh-meter format** (`compilations/laughmeter.py`). The old illustrated
+fact-ranking engine (`engine.py`, `topics/`) is retired; keep it for reference only.
 
 ```
-python3 engine.py script  topics/<slug>.py                      # voiceover script + title/description/tags
-python3 engine.py preview topics/<slug>.py out.png              # scene contact sheet (check drawings before audio exists)
-python3 engine.py thumb   topics/<slug>.py out.png              # 1080x1920 thumbnail
-python3 engine.py video   topics/<slug>.py voice.mp3 out.mp4    # final Short (prints the phrase timing it found)
-python3 engine.py sheet   out.mp4 out.png                       # 10-frame contact sheet of a rendered video
+python3 compilations/laughmeter.py compilations/configs/<slug>.json   # builds <out>.mp4 + <out>_thumb.png
 ```
-Needs Python 3 + Pillow + ffmpeg, and the Poppins Bold font at `/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf`.
-`topics/plane_features.py` is the complete reference topic — copy its structure.
+Config: `title2` (2nd title line, e.g. "KIDS TRYING LEMON"), `clips` [[rank, label, src, start, end], …] played #4 → #1,
+optional `replay` [src, start, end] (slow-mo of the #1 moment), `thumb` [src, time], `tease`, `out`.
+See `compilations/configs/kids_lemon.json`. Needs Python 3 + Pillow + ffmpeg + Poppins Bold.
 
 ## Daily routine (1 Short a day)
 
-0. **vidIQ check (before any topic or script work)** — see "vidIQ" below. Read `INSIGHTS.md` either way.
-1. **Pick 1 fresh topic** — the best one you can find — from the next category in the **Top 5 rotation** below
-   (look at the last entry in HISTORY.md and take the category after it; after #5 go back to #1).
-   Prefer topics backed by today's vidIQ breakouts or by what INSIGHTS.md says works.
-2. **Research every claim** with web search before writing it. Only use items you can confirm from a reliable source.
-   No myths, no "fun facts" that are actually false. If an item is disputed, drop it.
-3. **Write `topics/<slug>.py`** (see rules below), then run `preview` and *look at the image*.
-   Fix any drawing that is unclear, off-canvas, or doesn't read as the object at a glance.
-4. **Run `thumb`**, look at it. It shows the #1 item big with its `focus` spot circled and arrowed — make sure that spot
-   is the thing the #1 tease is about and that the drawing reads instantly at small size.
-5. **Send the creator**: the voiceover script (from `script`), the title, description, tags, and the thumbnail PNG.
-   Remind them: generate at ~1.1× speed and send back the MP3.
-6. **Commit and push** the topic files and the HISTORY.md entries.
-7. **When the MP3 arrives:** run `video`. Check the printed timing: each `num` line must be the "Number X:" phrase
-   (short, ~0.6–0.9s). Run `sheet` and look at it. Then send the MP4.
-   If the creator changed the wording when recording, update the topic text to match what they said before rendering.
+0. **vidIQ check** — see "vidIQ" below. Read `INSIGHTS.md` either way.
+1. **Pick today's topic** from the next slot in the **rotation** below (last entry in HISTORY.md → next slot; after #5 go
+   back to #1). Never repeat a topic theme from HISTORY.md. Title is always `Ranking Funniest <Topic>`.
+2. **Find 4 clips + 1 backup** with `vidiq_youtube_search` (type video, videoDuration short, order viewCount) — one search
+   per angle if needed. Each clip: a single original moment (not someone else's compilation), clearly on-theme, ideally
+   1M+ views, a real laugh in under ~8 seconds.
+   **Skip channels that license/claim footage:** AFV, Jukin (FailArmy, The Pet Collective, Kyoot), ViralHog, BVIRAL,
+   Storyful, Newsflare, MLB/NBA/NFL/league channels, House of Highlights, TV shows (Kimmel, Ellen, TODAY, GMA), Disney.
+3. **Send the creator**: the topic, the 4 clip links + backup (one line each: what happens, views), and the title,
+   description (with a credits line naming each channel) and tags. They download the clips and upload them.
+4. **Commit and push** the HISTORY.md entry (mark it "clips sent").
+5. **When the clips arrive:** make 2-fps contact sheets of every clip and *look at them*. Find each clip's laugh moment,
+   rank the four (#1 = biggest laugh), drop any clip with no real payoff (use the backup), trim each to its moment
+   (~4–7s), pick a 1–2.5s slow-mo replay of the #1 moment and a thumbnail frame at the #1 peak. Write the config, build,
+   then check a contact sheet of the output: faces must never sit under the pill, meter or MAXED OUT text, and there must
+   be no stray frames from the next scene at a cut. Send the MP4 + thumbnail with the final title/description/tags.
 
-## Top 5 rotation (the most-viewed Shorts niches, in our ranking format)
+## Rotation (5 slots)
 
-Chosen from vidIQ data, 2026-10-10: top 50 English Shorts by views (last 30 days) + top 50 English Shorts outliers this month
-+ 3 keyword checks, ~190 Shorts grouped by niche. Views found per reachable niche: gaming ~479M, animals ~461M,
-sports & records ~259M, tech & gadgets ~190M, weird history/science ~169M (food 167M just missed; family/kids, faith
-and kindness-skit niches were bigger but need real people on camera). Every Short is still a fact-checked 4-item ranking.
-Record the category in HISTORY.md (`[cat N]`).
+Kids topics broke out for us, so they get 3 of 5 slots. Record the slot in HISTORY.md (`[slot N]`).
 
-1. **Gaming** — the #1 niche by raw views (Minecraft, Roblox and indie-horror Shorts led the feed). Hidden tricks game
-   developers used, gaming myths that were true, how classic games fooled you, gaming world records.
-   e.g. "Ranking the sneakiest tricks game developers used", "Ranking the most impossible gaming world records".
-   Name games in the script if needed, but **never draw real game characters, logos or screenshots** — draw generic
-   controllers, screens, pixel shapes.
-2. **Animals** — the deepest niche (most breakout Shorts: pets, wildlife, "animal facts" channels). Animal abilities that
-   sound fake, animals with secret superpowers, pet behaviors explained.
-   e.g. "Ranking animal abilities that sound fake", "Ranking things your cat does that actually mean something".
-   Draw generic animals; no famous pet accounts or cartoon mascots.
-3. **Sports & records** — athletes, extreme sports and "records that will never be broken" all pulled big views.
-   e.g. "Ranking sports records that will never be broken", "Ranking the fastest things a human has ever done".
-   **Never draw real athletes' faces, team logos or league marks** — draw generic players, jerseys with plain numbers,
-   balls, stopwatches, podiums.
-4. **Tech & gadgets** — phone-brand rivalry and clever gadgets went viral. Hidden phone/computer features, tech that's
-   older than you think, why gadgets are designed the way they are.
-   e.g. "Ranking hidden phone features nobody uses", "Ranking everyday tech that's way older than you think".
-   Name brands in the script if needed, but **no brand logos or exact product designs** — draw generic phones, laptops,
-   chargers.
-5. **Weird history & science** — fact-story channels (Zack D. Films style) and "ranking physics" Shorts broke out.
-   Bizarre history, inventions that went wrong, science that sounds fake.
-   e.g. "Ranking the scariest early inventions", "Ranking history facts that sound made up".
-   Draw objects and generic figures, not real historical people's likenesses or photos; no gore.
+1. **Kids** — e.g. Kids Fails, Kids Trying Lemon, Kids Halloween Moments, Kids Sibling Moments, Kids First Haircut,
+   Kids Sports Fails, Kids Saying No, Kids Getting Scared, Kids vs Snow. Title: `Ranking Funniest Kids <Theme>`.
+2. **Animals** — pets and animals doing dumb or dramatic things: Dogs Being Dramatic, Cats Knocking Things Over,
+   Pets Getting Caught, Animal Jump Scares.
+3. **Kids** (a different theme from slot 1).
+4. **Fails & pranks** — everyday fails, gym fails, pool fails, prank reactions (no injuries that look serious).
+5. **Kids** (a different theme again).
 
-Format ideas that fit all five (vidIQ trend formats): Top X, Ranking Every, Tier List, Cheap vs Expensive,
-Fake vs Real, Guess The…. Stay within the engine's 4-item ranking layout.
+Keep it light: no real injuries, no kids in distress beyond a funny moment, nothing mean-spirited.
 
 ## Quality rules (from MrBeast's advice — apply every day)
 
-1. **Give them why they clicked, immediately.** The first line names the exact thing the title/thumbnail promised.
-   No intro, no setup, no "today we're going to". Every sentence must be about the topic — cut anything that isn't.
+1. **Give them why they clicked, immediately.** The first clip starts on the action — no slow lead-in.
+   Trim every clip to its laugh; cut anything that isn't funny.
 2. **Quality over quantity.** One great Short beats two average ones; average videos never get pushed. Before sending,
-   rate each topic honestly: are all 4 items genuinely surprising, and is #1 a real "wait, what?" Would *you* stop scrolling?
+   rate it honestly: is every clip actually funny, and is #1 the biggest laugh? Would *you* stop scrolling?
    If the topic isn't clearly great, replace it with a better one. Never ship filler.
-3. **Thumbnail = simple + one emotion + curiosity.** Understood in under a second while scrolling. One subject (the #1 item,
-   drawn big), at most ~4 words of text, and a tease that makes them wonder "what happened / why?" if they don't click.
-4. **Title = the same promise as the thumbnail**, and the video's first line pays it off.
+3. **Thumbnail = simple + one emotion + curiosity.** Understood in under a second while scrolling. One subject (the #1 moment,
+   at its peak), at most ~4 words of text, and a tease that makes them wonder "what happened / why?" if they don't click.
+4. **Title = the same promise as the thumbnail**, and the first clip pays it off.
 
-## Topic file rules
+## Legacy: fact-ranking engine (retired 2026-10-14)
+
+`engine.py` still works (`script` / `preview` / `thumb` / `video` / `sheet` on a `topics/<slug>.py`), but the channel no
+longer posts fact Shorts. The rules below apply only if the creator asks for one.
+
+### Topic file rules
 
 - **Hook** (`HOOK`): starts with "Ranking …", promises a payoff for #1 ("…and number one will surprise you",
   "…and number one could save your life"). Vary the payoff wording across days.
@@ -90,7 +72,7 @@ Fake vs Real, Guess The…. Stay within the engine's 4-item ranking layout.
 - `KEYWORDS`: words to highlight yellow in captions (uppercase, letters only).
 - `PALETTE`: pick a different one from the previous day (top/bottom gradient + glow color).
 
-## Drawing rules
+### Drawing rules
 
 - Each `draw_*()` draws on an 800×800 transparent canvas via `canvas()`, coordinates through `sc()`, returns `fin(im)`.
   Widths/radii must be multiplied by 2 (supersampling). Keep the subject within ~80–720.
@@ -108,9 +90,10 @@ vidIQ call per daily run.** First call `vidiq_balance`. If fewer than 5 credits 
 Never spend credits on title/thumbnail scoring, voiceovers or anything else unless the creator asks.
 
 - **Mon–Sat — breakout topics:** `vidiq_outliers` with `contentType: "short"`, `publishedWithin: "thisMonth"`, `limit: 25`,
-  and a `keyword` rotating by weekday: Mon "ranking", Tue "things you never noticed", Wed "did you know", Thu "facts about",
-  Fri "secret features", Sat "hidden meaning". Pick topics inspired by the winners — never copy a video; make our own 4-item
-  ranking on the same *theme*. Append the 5 most useful findings (title, views, outlier score, why it works) under
+  and a `keyword` rotating by weekday: Mon "funny kids", Tue "ranking funniest", Wed "funny animals", Thu "funny fails",
+  Fri "try not to laugh", Sat "funny pranks". Pick themes inspired by the winners — never copy a video; build our own
+  4-clip ranking on the same *theme*. (Clip searches with `vidiq_youtube_search` are separate and also 5 credits each —
+  keep the whole run to ~4 calls.) Append the 5 most useful findings (title, views, outlier score, why it works) under
   "Breakouts" in INSIGHTS.md with the date; keep only the latest ~30 lines there.
 - **Sunday — our own performance:** find the channel with `vidiq_user_channels` (the creator's channel is Internet Ranked,
   @InternetRanked-x4p), then one `vidiq_channel_analytics` call: last 7 days, `dimensions: ["video"]`,
@@ -121,5 +104,5 @@ Never spend credits on title/thumbnail scoring, voiceovers or anything else unle
 
 ## Platform notes
 
-- YouTube can demonetize "inauthentic"/mass-produced content. Keep topics varied, vary hooks and palettes, and keep facts solid.
+- YouTube can demonetize reused content. Every Short must be transformative: our ranking, laugh meter, trims, slow-mo, sound effects and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
 - vidIQ cannot upload to YouTube. The creator uploads/schedules in YouTube Studio.
