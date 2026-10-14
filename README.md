@@ -1,8 +1,7 @@
 # Internet Ranked – Shorts engine
 
 **Audience (decided 2026-10-14): funny-video fans** — teens and adults scrolling for laughs. Every Short is a
-"Ranking Funniest ___" compilation in the **laugh-meter format** (`compilations/laughmeter.py`). The old illustrated
-fact-ranking engine (`engine.py`, `topics/`) is retired; keep it for reference only.
+"Ranking Funniest ___" compilation in the **laugh-meter format** (`compilations/laughmeter.py`).
 
 ```
 python3 compilations/laughmeter.py compilations/configs/<slug>.json   # builds <out>.mp4 + <out>_thumb.png
@@ -54,34 +53,6 @@ Keep it light: no real injuries, no kids in distress beyond a funny moment, noth
 3. **Thumbnail = simple + one emotion + curiosity.** Understood in under a second while scrolling. One subject (the #1 moment,
    at its peak), at most ~4 words of text, and a tease that makes them wonder "what happened / why?" if they don't click.
 4. **Title = the same promise as the thumbnail**, and the first clip pays it off.
-
-## Legacy: fact-ranking engine (retired 2026-10-14)
-
-`engine.py` still works (`script` / `preview` / `thumb` / `video` / `sheet` on a `topics/<slug>.py`), but the channel no
-longer posts fact Shorts. The rules below apply only if the creator asks for one.
-
-### Topic file rules
-
-- **Hook** (`HOOK`): starts with "Ranking …", promises a payoff for #1 ("…and number one will surprise you",
-  "…and number one could save your life"). Vary the payoff wording across days.
-- **4 items**, ordered #4 → #1 in `ITEMS`. Each has `what` (names the thing, short) and `why` (the payoff, one sentence).
-  Spoken as "Number four: <what> <why>". #1 must be the strongest item.
-- **Length:** 65–80 words total (check the count `script` prints). Over 85 words = too long; cut.
-- **Outro** (`OUTRO`): one short line that flows back into the hook so the Short loops.
-- `label`: 1–3 words for the ranking list. `VIDEO_TITLE`: 2 lines. `THUMB_TEXT`: (small line, BIG line) — 4 words max in total; a third element is ignored. `THUMB_BANNER`: the #1 tease.
-- `KEYWORDS`: words to highlight yellow in captions (uppercase, letters only).
-- `PALETTE`: pick a different one from the previous day (top/bottom gradient + glow color).
-
-### Drawing rules
-
-- Each `draw_*()` draws on an 800×800 transparent canvas via `canvas()`, coordinates through `sc()`, returns `fin(im)`.
-  Widths/radii must be multiplied by 2 (supersampling). Keep the subject within ~80–720.
-- Flat, bold shapes, 3–5 colors, recognizable at thumbnail size. No text except tiny signage (e.g. "EXIT").
-- **No brand logos, characters, or copyrighted designs.** Generic objects only.
-- `focus=(x, y)`: the exact spot the item is about — the pulse ring goes there.
-- `animate(img, d, lt, e)`: optional. `d` draws on a transparent overlay (use RGBA fills). `e` = seconds since the `why`
-  phrase started (negative before it) — trigger the "payoff" animation when `e >= 0`. Return `None`, a new image, or
-  `(image_or_None, new_focus)`. Keep animations simple: something moves, flows, lights up, or appears.
 
 ## vidIQ (one 5-credit call per day, max)
 
