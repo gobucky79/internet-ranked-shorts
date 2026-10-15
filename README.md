@@ -1,24 +1,18 @@
 # Internet Ranked – Shorts engine
 
-**Audience (decided 2026-10-14): funny-video fans** — teens and adults scrolling for laughs. Every Short is a
-"Ranking Funniest ___" compilation in the **Try Not To Laugh format** (`compilations/trynottolaugh.py`): a 1-second
-#1 teaser that freezes on "WAIT FOR #1", then the countdown with 3 hearts that break as it goes, the last on the #1 hit,
-Every Short and thumbnail carries the @InternetRanked-x4p watermark.
+**Audience (updated 2026-10-15): mostly middle-aged funny-video fans** (parents/grandparents age). Every Short is a
+"Ranking Funniest ___" compilation in the **Clean format** (`compilations/clean.py`): straight cuts from #4 to #1 with
+the title banner, a "#N label" bar and the @InternetRanked-x4p watermark. **No black screens and no added sound
+effects** — the only audio is the clips' own sound (loudness-matched). Every Short and thumbnail carries the watermark.
 
 ```
-python3 compilations/trynottolaugh.py compilations/configs/<slug>.json   # builds <out>.mp4 + <out>_thumb.png
+python3 compilations/clean.py compilations/configs/<slug>.json   # builds <out>.mp4 + <out>_thumb.png
 ```
-Config: `title2` (2nd title line, e.g. "KIDS TRYING LEMON"), `clips` [[rank, label, src, start, end], …] played #4 → #1,
-(`replay` exists but is not used), `final_hit` (seconds into the #1 clip where the
-last heart breaks), `thumb` [src, time], `tease`, `out`.
-See `compilations/configs/kids_lemon.json`.
+Config: `title2` (2nd title line, e.g. "BABIES TRYING LEMON"), `clips` [[rank, label, src, start, end], …] played
+#4 → #1, `thumb` [src, time], `tease`, `out`. (`replay` exists but is not used.)
 
-**Second format — Vine Boom** (`compilations/vineboom.py`, same config + optional `card` text and `boom` audio file):
-opens on a black card with a vine boom and big "FUNNY ___" text, then the same black boom card hits after every clip.
-Uses the creator's sound `compilations/sounds/mentality.mp3` on every card (leading silence trimmed so it hits on the cut).
-```
-python3 compilations/vineboom.py compilations/configs/<slug>.json
-``` Needs Python 3 + Pillow + ffmpeg + Poppins Bold.
+Retired formats, kept for reference only: `vineboom.py` (black boom cards + sound — dropped 2026-10-15 for the
+middle-aged audience) and `trynottolaugh.py` (hearts game with sound effects). Needs Python 3 + Pillow + ffmpeg + Poppins Bold.
 
 ## Daily routine (1 Short a day)
 
@@ -40,22 +34,23 @@ python3 compilations/vineboom.py compilations/configs/<slug>.json
 5. **When the clips arrive:** make 2-fps contact sheets of every clip and *look at them*. Find each clip's laugh moment,
    rank the four (#1 = biggest laugh), drop any clip with no real payoff (use the backup), trim each to its moment
    (~4–7s), pick a thumbnail frame at the #1 peak. No slow-mo replay (creator: not necessary) — leave `replay` out of configs. Write the config, build,
-   then check a contact sheet of the output: faces must never sit under the title, rank bar or YOU LOST text, and there must
+   then check a contact sheet of the output: faces must never sit under the title or rank bar, and there must
    be no stray frames from the next scene at a cut. Send the MP4 + thumbnail with the final title/description/tags.
 
 ## Rotation (5 slots)
 
-Kids topics broke out for us, so they get 3 of 5 slots. Record the slot in HISTORY.md (`[slot N]`).
+Babies get 3 of 5 slots (switched from kids on 2026-10-15 — babies fit the middle-aged audience). Record the slot in
+HISTORY.md (`[slot N]`).
 
-1. **Kids** — e.g. Kids Fails, Kids Trying Lemon, Kids Halloween Moments, Kids Sibling Moments, Kids First Haircut,
-   Kids Sports Fails, Kids Saying No, Kids Getting Scared, Kids vs Snow. Title: `Ranking Funniest Kids <Theme>`.
+1. **Babies** — babies and toddlers: e.g. Babies Trying Lemon, Babies Laughing, Babies vs Dogs, Babies First Food,
+   Babies Getting Scared, Babies Meeting Twins, Babies Hearing Music, Babies Sneezing. Title: `Ranking Funniest Babies <Theme>`.
 2. **Animals** — pets and animals doing dumb or dramatic things: Dogs Being Dramatic, Cats Knocking Things Over,
    Pets Getting Caught, Animal Jump Scares.
-3. **Kids** (a different theme from slot 1).
+3. **Babies** (a different theme from slot 1).
 4. **Fails & pranks** — everyday fails, gym fails, pool fails, prank reactions (no injuries that look serious).
-5. **Kids** (a different theme again).
+5. **Babies** (a different theme again).
 
-Keep it light: no real injuries, no kids in distress beyond a funny moment, nothing mean-spirited.
+Keep it light: no real injuries, no babies in distress beyond a funny moment (no real crying meltdowns), nothing mean-spirited.
 
 ## Quality rules (from MrBeast's advice — apply every day)
 
@@ -75,7 +70,7 @@ vidIQ call per daily run.** First call `vidiq_balance`. If fewer than 5 credits 
 Never spend credits on title/thumbnail scoring, voiceovers or anything else unless the creator asks.
 
 - **Mon–Sat — breakout topics:** `vidiq_outliers` with `contentType: "short"`, `publishedWithin: "thisMonth"`, `limit: 25`,
-  and a `keyword` rotating by weekday: Mon "funny kids", Tue "ranking funniest", Wed "funny animals", Thu "funny fails",
+  and a `keyword` rotating by weekday: Mon "funny babies", Tue "ranking funniest", Wed "funny animals", Thu "funny fails",
   Fri "try not to laugh", Sat "funny pranks". Pick themes inspired by the winners — never copy a video; build our own
   4-clip ranking on the same *theme*. (Clip searches with `vidiq_youtube_search` are separate and also 5 credits each —
   keep the whole run to ~4 calls.) Append the 5 most useful findings (title, views, outlier score, why it works) under
@@ -89,5 +84,5 @@ Never spend credits on title/thumbnail scoring, voiceovers or anything else unle
 
 ## Platform notes
 
-- YouTube can demonetize reused content. Every Short must be transformative: our ranking, hearts game, trims, sound effects and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
+- YouTube can demonetize reused content. Every Short must be transformative: our ranking, trims, rank bars and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
 - vidIQ cannot upload to YouTube. The creator uploads/schedules in YouTube Studio.

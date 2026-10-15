@@ -34,3 +34,5 @@
 - 2026-10-14: "You Won't Believe These Useless Talents" got 12.7K engaged views from ~3.1K viewers (heavy rewatching),
   avg view 0:22 on a 0:21 Short, 77.6% stayed to watch — then flatlined after day 1. Creator's call: **only use clips
   that haven't blown up yet** (last ~60 days, ~5K–500K views, small channels, never 2M+) so viewers haven't seen them.
+- 2026-10-15: audience narrowed to **mostly middle-aged** viewers. Kids topics → **babies** (3 of 5 rotation slots), and
+  the format is now **Clean** (`compilations/clean.py`): no black cards, no vine boom or other added sound effects.
