@@ -1,0 +1,14 @@
+{
+  "title2": "BONK MOMENTS",
+  "clips": [
+    [4, "Pop goes the balloon", "src/max.mp4", 14.8, 18.3],
+    [3, "Last one standing", "src/unlucky.mp4", 37.0, 40.5],
+    [2, "Face full of water", "src/cutting.mp4", 27.8, 32.8],
+    [1, "Giant ball", "src/ball.mp4", 7.5, 11.6]
+  ],
+  "replay": ["src/ball.mp4", 8.2, 9.9],
+  "thumb": ["src/ball.mp4", 9.1],
+  "final_hit": 1.0,
+  "tease": "NOBODY SURVIVES #1",
+  "out": "out/bonk_moments"
+}

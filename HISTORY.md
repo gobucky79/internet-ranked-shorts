@@ -15,3 +15,4 @@ Never repeat a topic or reuse an item. Newest at the bottom. Format: date – sl
 - 2026-10-14 – kids_siblings – [slot 3] – Ranking Funniest Kids Sibling Moments – clips sent (Noya and Shir, robin whitsett, Javi's Family Adventures, Diary of 4)
 - 2026-10-14 – kids_sports_fails – [slot 5] – Ranking Funniest Kids Sports Fails – clips sent (Granite Park Sports Complex, backwardks, KID DE GEA, CDFootballFilms)
 - 2026-10-14 – kids_pranks – [slot 4] – Ranking Funniest Kids Pranks – clips sent (AsmrLinastar, Diary of 4, The Trench Family, Neil Henry)
+- 2026-10-14 – bonk_moments – [slot 4] – Ranking Funniest Bonk Moments (Try Not To Laugh format) – water balloon pop, last one standing gets drenched, face full of water, giant soccer ball (+ slow-mo). Clips: Super Max, ADHARV & COUSINS JOURNEY, Chattambees, Celine Dept
