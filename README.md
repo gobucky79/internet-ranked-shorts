@@ -39,7 +39,7 @@ python3 compilations/vineboom.py compilations/configs/<slug>.json
 4. **Commit and push** the HISTORY.md entry (mark it "clips sent").
 5. **When the clips arrive:** make 2-fps contact sheets of every clip and *look at them*. Find each clip's laugh moment,
    rank the four (#1 = biggest laugh), drop any clip with no real payoff (use the backup), trim each to its moment
-   (~4–7s), pick a 1–2.5s slow-mo replay of the #1 moment and a thumbnail frame at the #1 peak. Write the config, build,
+   (~4–7s), pick a thumbnail frame at the #1 peak. No slow-mo replay (creator: not necessary) — leave `replay` out of configs. Write the config, build,
    then check a contact sheet of the output: faces must never sit under the title, rank bar or YOU LOST text, and there must
    be no stray frames from the next scene at a cut. Send the MP4 + thumbnail with the final title/description/tags.
 
