@@ -3,13 +3,13 @@
 **Audience (decided 2026-10-14): funny-video fans** — teens and adults scrolling for laughs. Every Short is a
 "Ranking Funniest ___" compilation in the **Try Not To Laugh format** (`compilations/trynottolaugh.py`): a 1-second
 #1 teaser that freezes on "WAIT FOR #1", then the countdown with 3 hearts that break as it goes, the last on the #1 hit,
-plus a slow-mo replay. Every Short and thumbnail carries the @InternetRanked-x4p watermark.
+Every Short and thumbnail carries the @InternetRanked-x4p watermark.
 
 ```
 python3 compilations/trynottolaugh.py compilations/configs/<slug>.json   # builds <out>.mp4 + <out>_thumb.png
 ```
 Config: `title2` (2nd title line, e.g. "KIDS TRYING LEMON"), `clips` [[rank, label, src, start, end], …] played #4 → #1,
-optional `replay` [src, start, end] (slow-mo of the #1 moment), `final_hit` (seconds into the #1 clip where the
+(`replay` exists but is not used), `final_hit` (seconds into the #1 clip where the
 last heart breaks), `thumb` [src, time], `tease`, `out`.
 See `compilations/configs/kids_lemon.json`.
 
@@ -89,5 +89,5 @@ Never spend credits on title/thumbnail scoring, voiceovers or anything else unle
 
 ## Platform notes
 
-- YouTube can demonetize reused content. Every Short must be transformative: our ranking, hearts game, trims, slow-mo, sound effects and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
+- YouTube can demonetize reused content. Every Short must be transformative: our ranking, hearts game, trims, sound effects and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
 - vidIQ cannot upload to YouTube. The creator uploads/schedules in YouTube Studio.
