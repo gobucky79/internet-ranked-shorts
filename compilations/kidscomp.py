@@ -68,7 +68,7 @@ def has_audio(src):
 
 
 VF = f"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps=30,setsar=1"
-ENC = ["-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "aac", "-b:a", "192k", "-ar", "44100"]
+ENC = ["-c:v", "libx264", "-preset", "medium", "-crf", "23", "-maxrate", "9M", "-bufsize", "18M", "-c:a", "aac", "-b:a", "160k", "-ar", "44100"]
 
 
 def audio_in(src, ss, dur):
