@@ -15,12 +15,16 @@ See `compilations/configs/kids_lemon.json`. Needs Python 3 + Pillow + ffmpeg + P
 0. **vidIQ check** — see "vidIQ" below. Read `INSIGHTS.md` either way.
 1. **Pick today's topic** from the next slot in the **rotation** below (last entry in HISTORY.md → next slot; after #5 go
    back to #1). Never repeat a topic theme from HISTORY.md. Title is always `Ranking Funniest <Topic>`.
-2. **Find 4 clips + 1 backup** with `vidiq_youtube_search` (type video, videoDuration short, order viewCount) — one search
-   per angle if needed. Each clip: a single original moment (not someone else's compilation), clearly on-theme, ideally
-   1M+ views, a real laugh in under ~8 seconds.
+2. **Find 4 clips + 1 backup that haven't blown up yet.** Viral clips get swiped ("seen it") and look like reused
+   content, so: **posted in the last ~60 days, about 5K–500K views, ideally from channels under ~500K subscribers.**
+   Never use a clip over ~2M views. Search with `vidiq_youtube_search` (type video, videoDuration short,
+   `publishedAfter` = 60 days ago, order viewCount, limit 50) and keep only results inside the view range; or
+   `vidiq_outliers` (contentType short, publishedWithin thisMonth/threeMonths, maxViews 500000, keyword = theme) to find
+   small-channel clips that are already outperforming — the best kind: proven funny, not yet everywhere.
+   Each clip: a single original moment (not someone else's compilation), clearly on-theme, a real laugh in ~8 seconds.
    **Skip channels that license/claim footage:** AFV, Jukin (FailArmy, The Pet Collective, Kyoot), ViralHog, BVIRAL,
    Storyful, Newsflare, MLB/NBA/NFL/league channels, House of Highlights, TV shows (Kimmel, Ellen, TODAY, GMA), Disney.
-3. **Send the creator**: the topic, the 4 clip links + backup (one line each: what happens, views), and the title,
+3. **Send the creator**: the topic, the 4 clip links + backup (one line each: what happens, views, posted date), and the title,
    description (with a credits line naming each channel) and tags. They download the clips and upload them.
 4. **Commit and push** the HISTORY.md entry (mark it "clips sent").
 5. **When the clips arrive:** make 2-fps contact sheets of every clip and *look at them*. Find each clip's laugh moment,
