@@ -1,0 +1,38 @@
+{
+  "title2": "KIDS HALLOWEEN MOMENTS",
+  "clips": [
+    [
+      3,
+      "Calm baby, scared mom",
+      "src/steen.mp4",
+      4.5,
+      9.6
+    ],
+    [
+      2,
+      "Don't press the button",
+      "src/lowes.mp4",
+      0.3,
+      5.36
+    ],
+    [
+      1,
+      "Toddler vs swamp monster",
+      "src/owen.mp4",
+      0.0,
+      6.2
+    ]
+  ],
+  "replay": [
+    "src/owen.mp4",
+    3.2,
+    5.2
+  ],
+  "thumb": [
+    "src/owen.mp4",
+    4.75
+  ],
+  "final_hit": 4.0,
+  "tease": "HE WASN'T SCARED",
+  "out": "out/kids_halloween"
+}
