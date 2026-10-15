@@ -1,13 +1,16 @@
 # Internet Ranked – Shorts engine
 
 **Audience (decided 2026-10-14): funny-video fans** — teens and adults scrolling for laughs. Every Short is a
-"Ranking Funniest ___" compilation in the **laugh-meter format** (`compilations/laughmeter.py`).
+"Ranking Funniest ___" compilation in the **Try Not To Laugh format** (`compilations/trynottolaugh.py`): a 1-second
+#1 teaser that freezes on "WAIT FOR #1", then the countdown with 3 hearts that break as it goes, the last on the #1 hit,
+plus a slow-mo replay. Every Short and thumbnail carries the @InternetRanked-x4p watermark.
 
 ```
-python3 compilations/laughmeter.py compilations/configs/<slug>.json   # builds <out>.mp4 + <out>_thumb.png
+python3 compilations/trynottolaugh.py compilations/configs/<slug>.json   # builds <out>.mp4 + <out>_thumb.png
 ```
 Config: `title2` (2nd title line, e.g. "KIDS TRYING LEMON"), `clips` [[rank, label, src, start, end], …] played #4 → #1,
-optional `replay` [src, start, end] (slow-mo of the #1 moment), `thumb` [src, time], `tease`, `out`.
+optional `replay` [src, start, end] (slow-mo of the #1 moment), `final_hit` (seconds into the #1 clip where the
+last heart breaks), `thumb` [src, time], `tease`, `out`.
 See `compilations/configs/kids_lemon.json`. Needs Python 3 + Pillow + ffmpeg + Poppins Bold.
 
 ## Daily routine (1 Short a day)
@@ -30,7 +33,7 @@ See `compilations/configs/kids_lemon.json`. Needs Python 3 + Pillow + ffmpeg + P
 5. **When the clips arrive:** make 2-fps contact sheets of every clip and *look at them*. Find each clip's laugh moment,
    rank the four (#1 = biggest laugh), drop any clip with no real payoff (use the backup), trim each to its moment
    (~4–7s), pick a 1–2.5s slow-mo replay of the #1 moment and a thumbnail frame at the #1 peak. Write the config, build,
-   then check a contact sheet of the output: faces must never sit under the pill, meter or MAXED OUT text, and there must
+   then check a contact sheet of the output: faces must never sit under the title, rank bar or YOU LOST text, and there must
    be no stray frames from the next scene at a cut. Send the MP4 + thumbnail with the final title/description/tags.
 
 ## Rotation (5 slots)
