@@ -15,7 +15,7 @@ See `compilations/configs/kids_lemon.json`.
 
 **Second format — Vine Boom** (`compilations/vineboom.py`, same config + optional `card` text and `boom` audio file):
 opens on a black card with a vine boom and big "FUNNY ___" text, then the same black boom card hits after every clip.
-Uses a synthesized boom unless `boom` points at a real vine boom file.
+Uses the creator's sound `compilations/sounds/mentality.mp3` on every card (leading silence trimmed so it hits on the cut).
 ```
 python3 compilations/vineboom.py compilations/configs/<slug>.json
 ``` Needs Python 3 + Pillow + ffmpeg + Poppins Bold.

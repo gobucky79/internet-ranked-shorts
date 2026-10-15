@@ -11,7 +11,8 @@ Config keys:
            to override the card text shown after it
   replay   optional [src, start, end] slow-mo replay of the #1 moment, before the last card
   thumb    [src, time]   tease   thumbnail caption   out   output prefix
-  boom     optional path to a real vine boom audio file (otherwise a synthesized one is used)
+  boom     optional path to the card sound; default is sounds/mentality.mp3 (the creator's sound), falling back to a
+           synthesized boom if that file is missing
 """
 import json, os, subprocess, sys, tempfile
 from PIL import Image, ImageDraw, ImageFont
@@ -111,8 +112,15 @@ def make_boom(path):
 
 def build(cfg):
     tmp = tempfile.mkdtemp(prefix="vineboom_")
-    boom = cfg.get("boom") or f"{tmp}/boom.wav"
-    if not cfg.get("boom"):
+    here = os.path.dirname(os.path.abspath(__file__))
+    src_sound = cfg.get("boom") or os.path.join(here, "sounds", "mentality.mp3")
+    boom = f"{tmp}/boom.wav"
+    if os.path.exists(src_sound):
+        # trim the leading silence so the sound hits exactly on the cut to black
+        run(["ffmpeg", "-v", "error", "-y", "-i", src_sound, "-af",
+             "silenceremove=start_periods=1:start_threshold=-45dB,aresample=44100,aformat=channel_layouts=stereo,"
+             "loudnorm=I=-14:TP=-1:LRA=7", boom])
+    else:
         make_boom(boom)
     title2 = cfg["title2"]
     default_card = cfg.get("card") or f"FUNNY {title2}"
