@@ -30,7 +30,7 @@
 
 ## Audience
 - 2026-10-14: the creator picked one audience for everything: **funny-video fans** (teens/adults scrolling for laughs).
-  All Shorts are now "Ranking Funniest ___" compilations in the laugh-meter format; fact Shorts are retired.
+  All Shorts are now "Ranking Funniest ___" compilations (laugh meter later dropped for Try Not To Laugh); fact Shorts are retired.
 - 2026-10-14: "You Won't Believe These Useless Talents" got 12.7K engaged views from ~3.1K viewers (heavy rewatching),
   avg view 0:22 on a 0:21 Short, 77.6% stayed to watch — then flatlined after day 1. Creator's call: **only use clips
   that haven't blown up yet** (last ~60 days, ~5K–500K views, small channels, never 2M+) so viewers haven't seen them.

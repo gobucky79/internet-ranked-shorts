@@ -5,7 +5,7 @@ Three hearts sit under the title ("LAUGHED? LOSE A LIFE"). #4 is the warm-up; a 
 #3 and #2, and the last heart shatters on the #1 hit ("YOU LOST!") followed by an optional slow-mo replay.
 
 Usage: python3 trynottolaugh.py <config.json>
-Config keys (same as laughmeter.py, plus):
+Config keys: title2, clips [[rank, label, src, start, end], ...], replay, thumb, tease, out, plus:
   final_hit   seconds into the #1 clip where the big laugh lands (last heart breaks there). Default 1.0
   teaser      optional [src, start, end] for the opening teaser; defaults to 0.8s ending at the thumb frame
 """

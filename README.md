@@ -82,5 +82,5 @@ Never spend credits on title/thumbnail scoring, voiceovers or anything else unle
 
 ## Platform notes
 
-- YouTube can demonetize reused content. Every Short must be transformative: our ranking, laugh meter, trims, slow-mo, sound effects and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
+- YouTube can demonetize reused content. Every Short must be transformative: our ranking, hearts game, trims, slow-mo, sound effects and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
 - vidIQ cannot upload to YouTube. The creator uploads/schedules in YouTube Studio.
