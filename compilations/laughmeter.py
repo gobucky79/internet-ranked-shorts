@@ -63,7 +63,18 @@ for yy in range(GRAD.height):
     ImageDraw.Draw(GRAD).line([(0, yy), (GRAD.width, yy)], fill=c + (255,))
 
 
+WATERMARK = "@InternetRanked-x4p"
+
+
+def watermark(d):
+    """channel handle, top-left above the title banner (clear of YouTube's buttons, captions and faces)"""
+    f = font(36)
+    d.text((72, 50), WATERMARK, font=f, fill=(255, 255, 255, 165), anchor="lm",
+           stroke_width=3, stroke_fill=(0, 0, 0, 120))
+
+
 def banner(d, title2):
+    watermark(d)
     d.rounded_rectangle((60, 90, W - 60, 330), radius=36, fill=(255, 255, 255, 245))
     d.text((W // 2, 150), "RANKING FUNNIEST", font=fit("RANKING FUNNIEST", 78, 900), fill="black", anchor="mm")
     d.text((W // 2, 260), title2, font=fit(title2, 96, 900), fill=RED, anchor="mm")
