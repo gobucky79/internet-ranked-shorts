@@ -1,0 +1,45 @@
+{
+  "title2": "DOGS BEING DRAMATIC",
+  "card": "FUNNY DRAMATIC DOGS",
+  "clips": [
+    [
+      4,
+      "Not dramatic at all",
+      "src/abby.mp4",
+      15.8,
+      19.0
+    ],
+    [
+      3,
+      "Fed 2 minutes late",
+      "src/hippo.mp4",
+      2.4,
+      9.4
+    ],
+    [
+      2,
+      "The sun is gone",
+      "src/gsd.mp4",
+      1.2,
+      8.8
+    ],
+    [
+      1,
+      "The howl",
+      "src/sheldon.mp4",
+      6.6,
+      12.6
+    ]
+  ],
+  "replay": [
+    "src/sheldon.mp4",
+    7.7,
+    9.5
+  ],
+  "thumb": [
+    "src/sheldon.mp4",
+    7.3
+  ],
+  "tease": "WAIT FOR #1",
+  "out": "out/dramatic_dogs"
+}
