@@ -11,7 +11,14 @@ python3 compilations/trynottolaugh.py compilations/configs/<slug>.json   # build
 Config: `title2` (2nd title line, e.g. "KIDS TRYING LEMON"), `clips` [[rank, label, src, start, end], …] played #4 → #1,
 optional `replay` [src, start, end] (slow-mo of the #1 moment), `final_hit` (seconds into the #1 clip where the
 last heart breaks), `thumb` [src, time], `tease`, `out`.
-See `compilations/configs/kids_lemon.json`. Needs Python 3 + Pillow + ffmpeg + Poppins Bold.
+See `compilations/configs/kids_lemon.json`.
+
+**Second format — Vine Boom** (`compilations/vineboom.py`, same config + optional `card` text and `boom` audio file):
+opens on a black card with a vine boom and big "FUNNY ___" text, then the same black boom card hits after every clip.
+Uses a synthesized boom unless `boom` points at a real vine boom file.
+```
+python3 compilations/vineboom.py compilations/configs/<slug>.json
+``` Needs Python 3 + Pillow + ffmpeg + Poppins Bold.
 
 ## Daily routine (1 Short a day)
 
