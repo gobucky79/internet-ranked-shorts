@@ -1,5 +1,10 @@
 # Internet Ranked – Shorts engine
 
+> **Autopilot (added 2026-11-01): see [AUTOPILOT.md](AUTOPILOT.md).** The creator drops the downloaded clips in Drive ›
+> "Internet Ranked Inbox". A GitHub Action auto-edits them (`bot/autoedit.py`: 28–32 s, crossfades, original audio,
+> watermark only, no on-screen title/ranking) and uploads the Short to YouTube as private for one-tap approval.
+> The daily package's job now ends at step 3 plus writing the plan file. Step 5 below is the manual fallback.
+
 **Audience (updated 2026-10-15): mostly middle-aged funny-video fans** (parents/grandparents age). Every Short is a
 "Ranking Funniest ___" compilation in the **Clean format** (`compilations/clean.py`): straight cuts from #4 to #1 with
 the title banner, a "#N label" bar and the @InternetRanked-x4p watermark. **No black screens and no added sound
@@ -30,7 +35,10 @@ middle-aged audience) and `trynottolaugh.py` (hearts game with sound effects). N
    Storyful, Newsflare, MLB/NBA/NFL/league channels, House of Highlights, TV shows (Kimmel, Ellen, TODAY, GMA), Disney.
 3. **Send the creator**: the topic, the 4 clip links + backup (one line each: what happens, views, posted date), and the title,
    description (with a credits line naming each channel) and tags. They download the clips and upload them.
-4. **Commit and push** the HISTORY.md entry (mark it "clips sent").
+   **Number the clips 1–5 in the message** (backup = 5) and tell the creator to name the downloaded files to match.
+   Also write `plans/<date>_<slug>.json` (format in AUTOPILOT.md: slug, date, slot, title, topic, tease, description,
+   tags, clips [{n, channel, url, what}], `"status": "clips sent"`). The Autopilot uses it for the upload.
+4. **Commit and push** the HISTORY.md entry (mark it "clips sent") and the plan file.
 5. **When the clips arrive:** make 2-fps contact sheets of every clip and *look at them*. Find each clip's laugh moment,
    rank the four (#1 = biggest laugh), drop any clip with no real payoff (use the backup), trim each to its moment
    (~4–7s), pick a thumbnail frame at the #1 peak. No slow-mo replay (creator: not necessary) — leave `replay` out of configs. Write the config, build,
@@ -85,4 +93,5 @@ Never spend credits on title/thumbnail scoring, voiceovers or anything else unle
 ## Platform notes
 
 - YouTube can demonetize reused content. Every Short must be transformative: our ranking, trims, rank bars and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
-- vidIQ cannot upload to YouTube. The creator uploads/schedules in YouTube Studio.
+- vidIQ cannot upload to YouTube. The Autopilot uploads through the YouTube Data API instead (as private; the
+  creator publishes in YouTube Studio). The Sunday stats now come from `bot/weekly_stats.py`, which costs no vidIQ credits.

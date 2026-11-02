@@ -1,0 +1,32 @@
+name: Weekly stats report
+
+on:
+  schedule:
+    - cron: "41 14 * * 0"   # Sundays 7:41 AM Arizona time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q -r bot/requirements.txt
+      - name: Build report
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+        run: python -m bot.weekly_stats >> "$GITHUB_STEP_SUMMARY"
+      - name: Save report
+        run: |
+          git config user.name "internet-ranked-bot"
+          git config user.email "internet-ranked-bot@users.noreply.github.com"
+          git add reports
+          git diff --cached --quiet || (git commit -m "Weekly stats report" && git pull --rebase -q && git push)

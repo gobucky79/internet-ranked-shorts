@@ -1,0 +1,51 @@
+name: Autopilot (edit + upload)
+
+on:
+  schedule:
+    # every hour from 7 AM to 10 PM Arizona time (UTC-7), at :17 to dodge the top-of-hour rush
+    - cron: "17 14-23,0-5 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build and put it in Drive, but don't upload to YouTube"
+        type: boolean
+        default: false
+
+concurrency:
+  group: autopilot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ffmpeg + Python packages
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+          pip install -q -r bot/requirements.txt
+      - name: Check inbox, edit, upload
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          UPLOAD_MODE: ${{ vars.UPLOAD_MODE || 'private' }}
+          PUBLISH_TIME: ${{ vars.PUBLISH_TIME || '09:00' }}
+          DRY_RUN: ${{ (github.event.inputs.dry_run == 'true' || vars.DRY_RUN == '1') && '1' || '0' }}
+        run: python -m bot.run_inbox
+      - name: Save plan + history updates
+        run: |
+          if [ -n "$(git status --porcelain plans HISTORY.md)" ]; then
+            git config user.name "internet-ranked-bot"
+            git config user.email "internet-ranked-bot@users.noreply.github.com"
+            git add plans HISTORY.md
+            git commit -m "Autopilot: Short built and uploaded"
+            git pull --rebase -q && git push
+          fi

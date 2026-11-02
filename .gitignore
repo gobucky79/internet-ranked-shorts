@@ -3,3 +3,9 @@ __pycache__/
 *.mp3
 *.png
 out/
+*.jpg
+
+# never commit Google sign-in files
+client_secret*.json
+token*.json
+.env
