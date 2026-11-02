@@ -21,15 +21,18 @@ middle-aged audience) and `trynottolaugh.py` (hearts game with sound effects). N
 
 ## Daily routine (1 Short a day)
 
-0. **vidIQ check** — see "vidIQ" below. Read `INSIGHTS.md` either way.
+0. **Research check** — see "Research (no vidIQ)" below. Read `INSIGHTS.md` either way.
 1. **Pick today's topic** from the next slot in the **rotation** below (last entry in HISTORY.md → next slot; after #5 go
    back to #1). Never repeat a topic theme from HISTORY.md. Title is always `Ranking Funniest <Topic>`.
 2. **Find 4 clips + 1 backup that haven't blown up yet.** Viral clips get swiped ("seen it") and look like reused
    content, so: **posted in the last ~60 days, about 5K–500K views, ideally from channels under ~500K subscribers.**
-   Never use a clip over ~2M views. Search with `vidiq_youtube_search` (type video, videoDuration short,
-   `publishedAfter` = 60 days ago, order viewCount, limit 50) and keep only results inside the view range; or
-   `vidiq_outliers` (contentType short, publishedWithin thisMonth/threeMonths, maxViews 500000, keyword = theme) to find
-   small-channel clips that are already outperforming — the best kind: proven funny, not yet everywhere.
+   Never use a clip over ~2M views. If the HQ's Scout already posted today's picks (`scout.json` on the Internet Ranked
+   HQ page) for this topic, start from those. Otherwise search with the **video-searcher** skill: WebSearch plus the
+   built-in browser on YouTube (Filters: Type = Shorts, Upload date = this month/year, sorted by view count, then by
+   relevance), TikTok and Reddit, keeping only results inside the view range. Favor small-channel clips that are already
+   outperforming (views several times the channel's subscriber count, high views per hour) — the best kind: proven
+   funny, not yet everywhere. Every number must come from a page actually opened; never guess views or dates.
+   If the video-watcher skill is available, watch the shortlist (captions on) to confirm each laugh before sending.
    Each clip: a single original moment (not someone else's compilation), clearly on-theme, a real laugh in ~8 seconds.
    **Skip channels that license/claim footage:** AFV, Jukin (FailArmy, The Pet Collective, Kyoot), ViralHog, BVIRAL,
    Storyful, Newsflare, MLB/NBA/NFL/league channels, House of Highlights, TV shows (Kimmel, Ellen, TODAY, GMA), Disney.
@@ -71,27 +74,25 @@ Keep it light: no real injuries, no babies in distress beyond a funny moment (no
    at its peak), at most ~4 words of text, and a tease that makes them wonder "what happened / why?" if they don't click.
 4. **Title = the same promise as the thumbnail**, and the first clip pays it off.
 
-## vidIQ (one 5-credit call per day, max)
+## Research (no vidIQ)
 
-The free plan gives 150 credits/month (refills monthly); almost every vidIQ tool costs 5 credits. So: **at most ONE paid
-vidIQ call per daily run.** First call `vidiq_balance`. If fewer than 5 credits remain, skip vidIQ and rely on INSIGHTS.md.
-Never spend credits on title/thumbnail scoring, voiceovers or anything else unless the creator asks.
+**Never use vidIQ or any other paid research tool** (creator's call, 2026-11-02). All research is free: WebSearch, the
+built-in browser on YouTube/TikTok/Reddit, and our own YouTube API stats.
 
-- **Mon–Sat — breakout topics:** `vidiq_outliers` with `contentType: "short"`, `publishedWithin: "thisMonth"`, `limit: 25`,
-  and a `keyword` rotating by weekday: Mon "funny babies", Tue "ranking funniest", Wed "funny animals", Thu "funny fails",
-  Fri "try not to laugh", Sat "funny pranks". Pick themes inspired by the winners — never copy a video; build our own
-  4-clip ranking on the same *theme*. (Clip searches with `vidiq_youtube_search` are separate and also 5 credits each —
-  keep the whole run to ~4 calls.) Append the 5 most useful findings (title, views, outlier score, why it works) under
-  "Breakouts" in INSIGHTS.md with the date; keep only the latest ~30 lines there.
-- **Sunday — our own performance:** find the channel with `vidiq_user_channels` (the creator's channel is Internet Ranked,
-  @InternetRanked-x4p), then one `vidiq_channel_analytics` call: last 7 days, `dimensions: ["video"]`,
-  metrics views, engagedViews, averageViewPercentage, likes, subscribersGained, sort "-views", maxResults 25.
-  Write plain takeaways under "What works for us" in INSIGHTS.md (which topics/hooks/categories held viewers best,
-  which flopped) and apply them. If the channel isn't authorized in vidIQ, tell the creator in one line and skip.
+- **Mon–Sat — breakout topics:** search YouTube Shorts in the built-in browser (Upload date = this month, sorted by view
+  count) for a keyword rotating by weekday: Mon "funny babies", Tue "ranking funniest", Wed "funny animals", Thu "funny
+  fails", Fri "try not to laugh", Sat "funny pranks". Open the top results and note views, upload date, channel
+  subscribers, views per hour and outlier ratio (views ÷ subscribers). Pick themes inspired by the winners — never copy a
+  video; build our own 4-clip ranking on the same *theme*. Append the 5 most useful findings (title, views, outlier
+  ratio, why it works) under "Breakouts" in INSIGHTS.md with the date; keep only the latest ~30 lines there. If the
+  browser isn't available, use WebSearch and say the numbers are partial.
+- **Sunday — our own performance:** comes from `bot/weekly_stats.py` (YouTube Analytics through our own API access,
+  free). Read its latest output and write plain takeaways under "What works for us" in INSIGHTS.md (which
+  topics/hooks/categories held viewers best, which flopped) and apply them.
 - Commit INSIGHTS.md changes along with the topic files.
 
 ## Platform notes
 
 - YouTube can demonetize reused content. Every Short must be transformative: our ranking, trims, rank bars and text — never a straight reupload — and the description credits each source channel. Expect occasional Content ID claims on clips with music.
-- vidIQ cannot upload to YouTube. The Autopilot uploads through the YouTube Data API instead (as private; the
-  creator publishes in YouTube Studio). The Sunday stats now come from `bot/weekly_stats.py`, which costs no vidIQ credits.
+- The Autopilot uploads through the YouTube Data API (as private; the creator publishes in YouTube Studio). The Sunday
+  stats come from `bot/weekly_stats.py`.

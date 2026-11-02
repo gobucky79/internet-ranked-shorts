@@ -1,7 +1,7 @@
 """Weekly stats bot (Sundays): how last week's Shorts did, written to reports/<date>.md.
 
 Uses YouTube Analytics (views, % viewed, likes, subs gained per Short) and falls back to plain view counts from the
-Data API if Analytics isn't available. Costs no vidIQ credits.
+Data API if Analytics isn't available.
 """
 import datetime as dt, os
 
