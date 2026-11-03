@@ -57,7 +57,8 @@ middle-aged audience) and `trynottolaugh.py` (hearts game with sound effects). N
    service first saw the clip, so it only proves a clip is *too old*, never that it's fresh. A `0` view count there means
    "not known yet", not zero.
 3. **Send the creator**: the topic, the 4 clip links + backup (one line each: what happens, views, posted date), and the title,
-   description (with a credits line naming each channel) and tags. They download the clips and upload them.
+   description (with a credits line naming each channel) and tags. The clip fetcher on the creator's PC
+   (`bot/fetch_clips.py`, 8:20 AM) downloads them from the plan file; the creator only steps in for links it can't fetch.
    **Number the clips 1–5 in the message** (backup = 5) and tell the creator to name the downloaded files to match.
    Also write `plans/<date>_<slug>.json` (format in AUTOPILOT.md: slug, date, slot, title, topic, tease, description,
    tags, clips [{n, channel, url, what}], `"status": "clips sent"`). The Autopilot uses it for the upload.

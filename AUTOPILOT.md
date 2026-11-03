@@ -1,11 +1,12 @@
 # Internet Ranked Autopilot
 
-Bots that run the channel day to day. Your whole job: **download the day's clips, drop them in a Drive folder,
-and tap Publish in YouTube Studio.**
+Bots that run the channel day to day. Your whole job: **keep your PC on in the morning so the clip fetcher can
+download the day's clips, and tap Publish in YouTube Studio.**
 
 ```
 8 AM   daily package (Claude): topic + 5 numbered clip links + title/description/tags → plans/<date>_<slug>.json
-you    download the clips, name them 1–5 to match the list, drop them in Drive › "Internet Ranked Inbox"
+8:20   clip fetcher (your PC, Task Scheduler): downloads the 5 clips with yt-dlp → Drive › "Internet Ranked Inbox/<slug>"
+         (if a link fails, it logs it and you drop that one in by hand, named by its number)
 hourly Autopilot (GitHub Actions, 7 AM–10 PM):
          finds each clip's laugh moment from its sound → trims → ranks #4→#1 (biggest reaction last)
          → 28–32 s Short with smooth crossfades, original audio, @InternetRanked-x4p watermark, matching thumbnail
@@ -49,6 +50,16 @@ Two reasons:
 
 Optional repo variables (Settings › Secrets and variables › Actions › Variables):
 `UPLOAD_MODE` = `private` (default) or `schedule` · `PUBLISH_TIME` = `09:00` (Arizona) · `DRY_RUN` = `1` to pause uploads.
+
+## Clip fetcher (your PC)
+
+YouTube and TikTok block downloads from cloud servers, so the downloader runs on your Windows PC:
+`bot/fetch_clips.py` reads today's plan from this repo, downloads each clip with yt-dlp as `1.mp4`…`5.mp4`, and uploads
+them to Drive › Internet Ranked Inbox › `<slug>`. Setup, in a folder like `C:\Users\<you>\InternetRanked`:
+download `fetch_clips.py`, `setup_fetcher.bat` and `run_fetcher.bat` from `bot/`, then double-click
+`setup_fetcher.bat` (installs yt-dlp, asks once for the same three Google values as the GitHub secrets, and schedules a
+daily 8:20 AM run that retries every 30 min until 12:20 PM). Log: `%USERPROFILE%\.internet-ranked\fetch.log`.
+Manual run: `py fetch_clips.py` · test without uploading: `py fetch_clips.py --dry-run`.
 
 ## Daily use
 
