@@ -23,15 +23,36 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
+      - name: Check Google sign-in secrets
+        id: secrets
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+        run: |
+          missing=""
+          for k in GOOGLE_CLIENT_ID GOOGLE_CLIENT_SECRET GOOGLE_REFRESH_TOKEN; do
+            [ -z "${!k}" ] && missing="$missing $k"
+          done
+          if [ -n "$missing" ]; then
+            echo "::warning::Autopilot skipped — missing secret(s):$missing. Finish AUTOPILOT.md setup steps 1-4."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/checkout@v4
+        if: steps.secrets.outputs.ready == 'true'
       - uses: actions/setup-python@v5
+        if: steps.secrets.outputs.ready == 'true'
         with:
           python-version: "3.12"
       - name: Install ffmpeg + Python packages
+        if: steps.secrets.outputs.ready == 'true'
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           pip install -q -r bot/requirements.txt
       - name: Check inbox, edit, upload
+        if: steps.secrets.outputs.ready == 'true'
         env:
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
@@ -41,6 +62,7 @@ jobs:
           DRY_RUN: ${{ (github.event.inputs.dry_run == 'true' || vars.DRY_RUN == '1') && '1' || '0' }}
         run: python -m bot.run_inbox
       - name: Save plan + history updates
+        if: steps.secrets.outputs.ready == 'true'
         run: |
           if [ -n "$(git status --porcelain plans HISTORY.md)" ]; then
             git config user.name "internet-ranked-bot"
