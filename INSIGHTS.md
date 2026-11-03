@@ -36,3 +36,8 @@
   that haven't blown up yet** (last ~60 days, ~5K–500K views, small channels, never 2M+) so viewers haven't seen them.
 - 2026-10-15: audience narrowed to **mostly middle-aged** viewers. Kids topics → **babies** (3 of 5 rotation slots), and
   the format is now **Clean** (`compilations/clean.py`): no black cards, no vine boom or other added sound effects.
+- 2026-11-03: **AI fakes are everywhere in baby Shorts.** Of ~150 in-range baby/dog and baby/first-food Shorts checked
+  (posted in the last 60 days, 5K–500K views), most of the funny-looking picks were AI-generated (garbled name tags,
+  showroom lighting, templated pet+baby channels). No Short shipped that night rather than ship fakes. The
+  2026-10-15 dramatic_dogs #1 came from Sheldon the Drama King, now known to be AI. Screen every clip (README step 2) and
+  look on TikTok first for real parent-filmed baby clips.

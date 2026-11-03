@@ -36,6 +36,26 @@ middle-aged audience) and `trynottolaugh.py` (hearts game with sound effects). N
    Each clip: a single original moment (not someone else's compilation), clearly on-theme, a real laugh in ~8 seconds.
    **Skip channels that license/claim footage:** AFV, Jukin (FailArmy, The Pet Collective, Kyoot), ViralHog, BVIRAL,
    Storyful, Newsflare, MLB/NBA/NFL/league channels, House of Highlights, TV shows (Kimmel, Ellen, TODAY, GMA), Disney.
+   **Real clips only — screen every pick for AI fakes (added 2026-11-03).** Baby and pet Shorts are flooded with
+   AI-generated clips; on 2026-11-03 most in-range baby/dog and baby/food picks were fake. Before a clip makes the list,
+   look at 3+ frames up close and drop it on any of these:
+   - garbled or misspelled text on name tags, signs, packaging or clothing (the tell that exposed "Sheldon" — tag read "Sheeldon")
+   - too-perfect "story" clips: studio-even lighting, staged showroom kitchens, a person frozen or staring in the
+     background, every shot framed like a movie, a neat setup → twist → payoff in 15 s
+   - templated channels: a pet + named baby duo posting near-identical 15 s clips daily with SEO titles
+     ("Dog and Baby 😂 <Name> Nuzzles Giggling <Baby>"), or generic names (Giggle Paws, Tiny ___, ___ Paws, "AI" in the name)
+   - third-person descriptions ("an adorable baby tries…") on a channel that isn't the parent's — usually a reupload farm
+   - waxy skin, hair or fur that smears when moving, hands/fingers that merge, food that changes shape between frames
+   Known AI (verified): Sheldon the Drama King, Bug The Bully, Golden Adventures, Dan Davies, Ornelaz Hornaday, LussBabe.
+   Same template, treat as AI: Jake The Troublemaker. Real parent-filmed clips are easier to find on **TikTok** — check it
+   first for baby themes. If you can't confirm a clip is real, it doesn't go in.
+   **Getting the numbers:** in the built-in browser (or Claude in Chrome if the built-in one is down), YouTube search with
+   Type = Shorts + Upload date = This month (`sp=CAMSBAgEEAk%3D` sorted by views, `sp=EgQIBRAJ` this year by relevance,
+   `sp=CAISAhAJ` newest) gives views and age for every result; opening a Short gives exact views and publish date. Ignore
+   the vidIQ overlay if the browser has the extension (no vidIQ, creator's call). Backup with no browser:
+   `returnyoutubedislikeapi.com/votes?videoId=<id>` via WebFetch gives real view counts; its `dateCreated` is when that
+   service first saw the clip, so it only proves a clip is *too old*, never that it's fresh. A `0` view count there means
+   "not known yet", not zero.
 3. **Send the creator**: the topic, the 4 clip links + backup (one line each: what happens, views, posted date), and the title,
    description (with a credits line naming each channel) and tags. They download the clips and upload them.
    **Number the clips 1–5 in the message** (backup = 5) and tell the creator to name the downloaded files to match.
