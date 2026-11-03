@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1A1E3D"/>
+      <stop offset="1" stop-color="#3B1B6E"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- podium -->
+  <rect x="84"  y="300" width="108" height="140" rx="14" fill="#4D7CFE"/>
+  <rect x="202" y="236" width="108" height="204" rx="14" fill="#FF4D6D"/>
+  <rect x="320" y="334" width="108" height="106" rx="14" fill="#2EC4B6"/>
+  <g font-family="Poppins" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <text x="138" y="395" font-size="76">2</text>
+    <text x="256" y="345" font-size="96">1</text>
+    <text x="374" y="413" font-size="64">3</text>
+  </g>
+  <!-- laughing face on top -->
+  <g transform="translate(0,16)">
+  <circle cx="256" cy="148" r="70" fill="#FFD23F"/>
+  <path d="M218 138 q14 -18 28 0" fill="none" stroke="#1A1E3D" stroke-width="9" stroke-linecap="round"/>
+  <path d="M266 138 q14 -18 28 0" fill="none" stroke="#1A1E3D" stroke-width="9" stroke-linecap="round"/>
+  <path d="M212 160 h88 q-4 44 -44 44 q-40 0 -44 -44 z" fill="#1A1E3D"/>
+  <path d="M232 186 q24 14 48 0 q-6 18 -24 18 q-18 0 -24 -18 z" fill="#FF4D6D"/>
+  </g>
+</svg>
