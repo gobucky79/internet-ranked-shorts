@@ -44,5 +44,40 @@
       "what": "BACKUP \u2014 5-month-old discovers peekaboo (104K, 51 days)"
     }
   ],
-  "status": "clips sent"
+  "status": "ready to post",
+  "drive_url": "https://drive.google.com/file/d/1OBJsrKQL-NwR4wkqmj0N3MwRRNjt4Sqb/view?usp=drivesdk",
+  "built": "2026-11-04T18:26:42Z",
+  "title_final": "Ranking Funniest Babies Laughing #shorts",
+  "credits": [
+    "@samanthacostlow",
+    "@joannieannsmith",
+    "@jesshigh",
+    "@ria.georgia"
+  ],
+  "edit": [
+    {
+      "rank": 4,
+      "start": 25.7,
+      "end": 33.5,
+      "file": "5.mp4"
+    },
+    {
+      "rank": 3,
+      "start": 22.3,
+      "end": 30.1,
+      "file": "3.mp4"
+    },
+    {
+      "rank": 2,
+      "start": 7.7,
+      "end": 15.5,
+      "file": "1.mp4"
+    },
+    {
+      "rank": 1,
+      "start": 14.5,
+      "end": 22.3,
+      "file": "2.mp4"
+    }
+  ]
 }

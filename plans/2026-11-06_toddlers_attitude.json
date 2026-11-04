@@ -44,5 +44,40 @@
       "what": "BACKUP \u2014 'you do look prettynee' (144K, 5 days)"
     }
   ],
-  "status": "clips sent"
+  "status": "ready to post",
+  "drive_url": "https://drive.google.com/file/d/143AUuVJWYcLHJiM_kq1h9kptavwQVLej/view?usp=drivesdk",
+  "built": "2026-11-04T18:26:42Z",
+  "title_final": "Ranking Funniest Toddlers With Attitude #shorts",
+  "credits": [
+    "@rachelelizabeth867",
+    "@cindyraea_",
+    "@itslivibobo",
+    "@xylia____21"
+  ],
+  "edit": [
+    {
+      "rank": 4,
+      "start": 0.0,
+      "end": 7.8,
+      "file": "5.mp4"
+    },
+    {
+      "rank": 3,
+      "start": 0.0,
+      "end": 7.8,
+      "file": "4.mp4"
+    },
+    {
+      "rank": 2,
+      "start": 11.3,
+      "end": 19.1,
+      "file": "2.mp4"
+    },
+    {
+      "rank": 1,
+      "start": 0.0,
+      "end": 7.8,
+      "file": "3.mp4"
+    }
+  ]
 }

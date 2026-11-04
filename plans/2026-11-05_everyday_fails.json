@@ -44,5 +44,40 @@
       "what": "BACKUP \u2014 Halloween costume gone wrong (68K, 6 days)"
     }
   ],
-  "status": "clips sent"
+  "status": "ready to post",
+  "drive_url": "https://drive.google.com/file/d/1TojwtGGYMV_K1uVT2uMhGTrae6J3aVwN/view?usp=drivesdk",
+  "built": "2026-11-04T18:26:42Z",
+  "title_final": "Ranking Funniest Everyday Fails #shorts",
+  "credits": [
+    "@lily2goated4u",
+    "@megshansen",
+    "@petite.princess.xo",
+    "@aqueelaandryan"
+  ],
+  "edit": [
+    {
+      "rank": 4,
+      "start": 0.0,
+      "end": 7.8,
+      "file": "4.mp4"
+    },
+    {
+      "rank": 3,
+      "start": 6.1,
+      "end": 13.9,
+      "file": "5.mp4"
+    },
+    {
+      "rank": 2,
+      "start": 4.3,
+      "end": 12.1,
+      "file": "3.mp4"
+    },
+    {
+      "rank": 1,
+      "start": 3.8,
+      "end": 11.6,
+      "file": "1.mp4"
+    }
+  ]
 }

@@ -44,5 +44,40 @@
       "what": "BACKUP \u2014 toddler deer trick-or-treating, 'Look it!' (289K, 5 days, long clip)"
     }
   ],
-  "status": "clips sent"
+  "status": "ready to post",
+  "drive_url": "https://drive.google.com/file/d/1FHbeZZ6wLwb8fE3gDKxIxT_cW4ZBICxf/view?usp=drivesdk",
+  "built": "2026-11-04T18:26:42Z",
+  "title_final": "Ranking Funniest Babies vs Halloween #shorts",
+  "credits": [
+    "@morekateandbabes",
+    "@thesolafamily",
+    "@camillesmiith",
+    "@ericaann.co"
+  ],
+  "edit": [
+    {
+      "rank": 4,
+      "start": 48.2,
+      "end": 56.0,
+      "file": "5.mp4"
+    },
+    {
+      "rank": 3,
+      "start": 0.0,
+      "end": 7.8,
+      "file": "2.mp4"
+    },
+    {
+      "rank": 2,
+      "start": 3.2,
+      "end": 11.0,
+      "file": "4.mp4"
+    },
+    {
+      "rank": 1,
+      "start": 25.3,
+      "end": 33.1,
+      "file": "3.mp4"
+    }
+  ]
 }

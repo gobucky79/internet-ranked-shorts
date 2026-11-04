@@ -44,5 +44,40 @@
       "what": "BACKUP \u2014 golden gets caught by mum (162K, 52 days)"
     }
   ],
-  "status": "clips sent"
+  "status": "ready to post",
+  "drive_url": "https://drive.google.com/file/d/1wHkqUP2viRt3XfedtIk-uMID_hUdzasu/view?usp=drivesdk",
+  "built": "2026-11-04T18:26:42Z",
+  "title_final": "Ranking Funniest Pets Getting Caught #shorts",
+  "credits": [
+    "@blu_the_blep",
+    "@norman_bunz_the_basset",
+    "@jah.thadon",
+    "@furryhousefinds"
+  ],
+  "edit": [
+    {
+      "rank": 4,
+      "start": 0.0,
+      "end": 7.81,
+      "file": "2.mp4"
+    },
+    {
+      "rank": 3,
+      "start": 0.0,
+      "end": 7.81,
+      "file": "4.mp4"
+    },
+    {
+      "rank": 2,
+      "start": 0.0,
+      "end": 7.81,
+      "file": "1.mp4"
+    },
+    {
+      "rank": 1,
+      "start": 0.0,
+      "end": 7.76,
+      "file": "3.mp4"
+    }
+  ]
 }
