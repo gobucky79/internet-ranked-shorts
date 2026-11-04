@@ -1,0 +1,48 @@
+{
+  "slug": "pets_caught",
+  "date": "2026-11-08",
+  "slot": 2,
+  "title": "Ranking Funniest Pets Getting Caught",
+  "topic": "Pets Getting Caught",
+  "tease": "CAUGHT",
+  "tags": [
+    "funny pets",
+    "funny dogs",
+    "dog caught",
+    "pets caught",
+    "guilty dog"
+  ],
+  "clips": [
+    {
+      "n": 1,
+      "channel": "@jah.thadon",
+      "url": "https://www.tiktok.com/@jah.thadon/video/7702159340387568926",
+      "what": "doodle puppy caught in the act again (311K, 5 days)"
+    },
+    {
+      "n": 2,
+      "channel": "@blu_the_blep",
+      "url": "https://www.tiktok.com/@blu_the_blep/video/7695782172157857046",
+      "what": "cat caught sneaking (412K, 23 days)"
+    },
+    {
+      "n": 3,
+      "channel": "@furryhousefinds",
+      "url": "https://www.tiktok.com/@furryhousefinds/video/7684664078912081166",
+      "what": "two dogs caught deep in the leftovers (181K, 53 days)"
+    },
+    {
+      "n": 4,
+      "channel": "@norman_bunz_the_basset",
+      "url": "https://www.tiktok.com/@norman_bunz_the_basset/video/7686324328819871006",
+      "what": "basset hound: 'wasn't me' (316K, 47 days)"
+    },
+    {
+      "n": 5,
+      "channel": "@mjthegolden",
+      "url": "https://www.tiktok.com/@mjthegolden/video/7684761651421203733",
+      "what": "BACKUP \u2014 golden gets caught by mum (162K, 52 days)"
+    }
+  ],
+  "status": "clips sent"
+}
