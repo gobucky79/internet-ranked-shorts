@@ -2,7 +2,8 @@
 
 > **Autopilot (added 2026-11-01): see [AUTOPILOT.md](AUTOPILOT.md).** The creator drops the downloaded clips in Drive ›
 > "Internet Ranked Inbox". A GitHub Action auto-edits them (`bot/autoedit.py`: 28–32 s, crossfades, original audio,
-> watermark only, no on-screen title/ranking) and uploads the Short to YouTube as private for one-tap approval.
+> watermark only, no on-screen title/ranking), then hands it off (Drive + notification now; scheduled upload with a
+> veto window after the API audit, see AUDIT.md). A watchdog pauses everything on a copyright removal.
 > The daily package's job now ends at step 3 plus writing the plan file. Step 5 below is the manual fallback.
 
 **Audience (updated 2026-10-15): mostly middle-aged funny-video fans** (parents/grandparents age). Every Short is a

@@ -1,0 +1,43 @@
+name: Watchdog (copyright + missed days)
+
+on:
+  schedule:
+    # 12:23 PM and 6:23 PM Arizona time (UTC-7)
+    - cron: "23 19 * * *"
+    - cron: "23 1 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: autopilot
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -q requests
+      - name: Check the channel
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m bot.watchdog
+      - name: Save pause switch + state
+        run: |
+          git add -A PAUSED watchdog_state.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git config user.name "internet-ranked-bot"
+            git config user.email "internet-ranked-bot@users.noreply.github.com"
+            git commit -m "Watchdog: update state"
+            git pull --rebase -q && git push
+          fi

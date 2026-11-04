@@ -12,6 +12,7 @@ import http.server, json, secrets, sys, threading, urllib.parse, urllib.request,
 
 SCOPES = [
     "https://www.googleapis.com/auth/youtube.upload",          # upload Shorts + set thumbnails
+    "https://www.googleapis.com/auth/youtube.force-ssl",       # watchdog: pull a claimed Short back to private
     "https://www.googleapis.com/auth/youtube.readonly",        # weekly stats: list your videos
     "https://www.googleapis.com/auth/yt-analytics.readonly",   # weekly stats: retention, subs gained
     "https://www.googleapis.com/auth/drive",                   # read the inbox folder, file finished Shorts

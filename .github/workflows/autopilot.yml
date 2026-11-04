@@ -17,6 +17,7 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   run:
@@ -57,7 +58,9 @@ jobs:
           GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
           GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
-          UPLOAD_MODE: ${{ vars.UPLOAD_MODE || 'private' }}
+          UPLOAD_MODE: ${{ vars.UPLOAD_MODE || 'drive' }}
+          VETO_HOURS: ${{ vars.VETO_HOURS || '3' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_TIME: ${{ vars.PUBLISH_TIME || '09:00' }}
           DRY_RUN: ${{ (github.event.inputs.dry_run == 'true' || vars.DRY_RUN == '1') && '1' || '0' }}
         run: python -m bot.run_inbox

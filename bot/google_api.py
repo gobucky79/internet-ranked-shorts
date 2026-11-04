@@ -113,6 +113,24 @@ class Google:
             time.sleep(10 * (attempt + 1))
         raise SystemExit("YouTube upload kept failing — will retry on the next run")
 
+    def recent_uploads(self, n=15):
+        """Newest n videos on the channel with status (incl. removals) and region blocks."""
+        ch = self.get(f"{YT}/channels", part="contentDetails", mine="true")["items"][0]
+        uploads = ch["contentDetails"]["relatedPlaylists"]["uploads"]
+        items = self.get(f"{YT}/playlistItems", part="contentDetails", playlistId=uploads, maxResults=n)["items"]
+        ids = [i["contentDetails"]["videoId"] for i in items]
+        if not ids:
+            return []
+        return self.get(f"{YT}/videos", part="snippet,status,contentDetails", id=",".join(ids))["items"]
+
+    def set_private(self, video_id):
+        """Pull a video back to private. Needs the youtube.force-ssl scope (AUTOPILOT.md › Watchdog);
+        returns (ok, message) instead of raising so the watchdog can fall back to alerting."""
+        r = requests.put(f"{YT}/videos", headers=self.h(), params={"part": "status"},
+                         json={"id": video_id, "status": {"privacyStatus": "private",
+                                                              "selfDeclaredMadeForKids": False}}, timeout=60)
+        return r.status_code == 200, r.text[:300]
+
     def set_thumbnail(self, video_id, path):
         with open(path, "rb") as f:
             r = requests.post(YT_THUMB, headers=self.h({"Content-Type": "image/jpeg"}),

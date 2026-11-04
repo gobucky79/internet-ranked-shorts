@@ -6,8 +6,13 @@ Every run (GitHub Actions, hourly in the daytime):
      - Or put them in a subfolder named after the plan's slug (e.g. babies_lemon) to pick the plan yourself.
   2. Wait until the upload has settled (4+ clips and nothing new for 10 min, or 3 clips and nothing new for 1 hour).
   3. Auto-edit (bot/autoedit.py), write title/description/tags (bot/metadata.py).
-  4. Upload to YouTube — PRIVATE by default, so the creator approves it in YouTube Studio with one tap.
-     UPLOAD_MODE=schedule instead schedules it to go public at PUBLISH_TIME (Arizona time) unless stopped.
+  4. Hand it off, depending on UPLOAD_MODE:
+     - drive (default): no YouTube upload. YouTube locks API uploads from unaudited apps as private for good (they
+       can't be published or appealed), so until the API audit passes (AUDIT.md) the creator posts the finished
+       file from Drive with the YouTube app. A notification carries the ready-to-paste title/description/tags.
+     - schedule (after the audit): uploads and schedules it to go public at the next PUBLISH_TIME that is at least
+       VETO_HOURS away. A notification says when; doing nothing = it goes live. To skip, set it to Private in Studio.
+     - private: uploads as private (testing only while unaudited — those uploads stay locked).
   5. Put the finished MP4 + thumbnail in Drive "Internet Ranked Done/<slug>" (easy to preview on a phone),
      move the source clips there too, mark the plan "uploaded" and log it in HISTORY.md.
 
@@ -15,13 +20,14 @@ Local test without Google:  python3 -m bot.run_inbox --local DIR --dry-run
 """
 import argparse, datetime as dt, glob, json, os, shutil, sys, tempfile
 
-from bot import autoedit, metadata
+from bot import autoedit, metadata, notify
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PLANS = os.path.join(ROOT, "plans")
 INBOX, DONE = "Internet Ranked Inbox", "Internet Ranked Done"
 AZ = dt.timezone(dt.timedelta(hours=-7))          # Arizona: no daylight saving
 SETTLE_4, SETTLE_3 = 10 * 60, 60 * 60
+PAUSED = os.path.join(ROOT, "PAUSED")             # the watchdog creates this after a copyright removal
 
 
 def load_plans():
@@ -61,13 +67,24 @@ def pick_plan(plans, slug=None):
     return pending[0] if pending else None
 
 
-def next_publish_time(hhmm):
+def next_publish_time(hhmm, veto_hours=1.0, now=None):
+    """Next PUBLISH_TIME (Arizona) that leaves at least veto_hours for the creator to skip the Short."""
     h, m = map(int, hhmm.split(":"))
-    now = dt.datetime.now(AZ)
+    now = now or dt.datetime.now(AZ)
     t = now.replace(hour=h, minute=m, second=0, microsecond=0)
-    if t < now + dt.timedelta(hours=1):
+    while t < now + dt.timedelta(hours=max(veto_hours, 1.0)):
         t += dt.timedelta(days=1)
     return t.astimezone(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def az_label(utc_iso):
+    t = dt.datetime.fromisoformat(utc_iso.replace("Z", "+00:00")).astimezone(AZ)
+    return t.strftime("%a %b %-d, %-I:%M %p") + " Arizona time"
+
+
+def paste_block(meta):
+    return (f"**Title**\n```\n{meta['title']}\n```\n**Description**\n```\n{meta['description']}\n```\n"
+            f"**Tags**\n```\n{', '.join(meta['tags'])}\n```")
 
 
 def log_history(plan, meta, video_url):
@@ -112,6 +129,10 @@ def run_local(folder, dry_run):
 
 def run_drive(dry_run):
     from bot.google_api import Google
+    if os.path.exists(PAUSED):
+        print("PAUSED: the watchdog stopped uploads after a copyright problem. Read the alert issue, then delete the "
+              "PAUSED file in the repo to resume.")
+        return
     g = Google()
     inbox = g.find_folder(INBOX)
     done_root = g.find_folder(DONE)
@@ -144,16 +165,30 @@ def run_drive(dry_run):
         rep, meta = produce(plan, paths, work)
 
         done = g.find_folder(plan["slug"], parent=done_root)
-        g.upload_file(rep["video"], done, "video/mp4")
+        drive_vid = g.upload_file(rep["video"], done, "video/mp4")
         g.upload_file(rep["thumbnail"], done, "image/jpeg")
+        mode = os.environ.get("UPLOAD_MODE", "drive").lower()
+        length_note = "" if rep["in_range"] else f"\n\n⚠️ Length is {rep['duration']}s (outside 28–32s) — give it a look."
 
         if dry_run:
             print("DRY RUN: skipping YouTube upload")
             print(json.dumps(meta, indent=2))
             plan.update(status="built (dry run)")
+        elif mode == "drive":
+            link = drive_vid.get("webViewLink", "Drive › Internet Ranked Done")
+            plan.update(status="ready to post", drive_url=link,
+                        built=now.strftime("%Y-%m-%dT%H:%M:%SZ"))
+            log_history(plan, meta, link)
+            notify.alert(f"short:{plan['slug']}", f"Today's Short is ready to post: {meta['title'].replace(' #shorts', '')}",
+                         f"1. Open the video on your phone and save it: {link} (⋮ › Download).\n2. YouTube app › + › "
+                         f"Upload a video › pick it, and paste the text below.\n3. Close this issue."
+                         f"\n\n{paste_block(meta)}"
+                         f"{length_note}\n\n_Why manual: YouTube locks uploads from unaudited API apps as private for "
+                         f"good. Once the audit in AUDIT.md passes, set UPLOAD_MODE=schedule and this step disappears._")
         else:
-            mode = os.environ.get("UPLOAD_MODE", "private").lower()
-            publish_at = next_publish_time(os.environ.get("PUBLISH_TIME", "09:00")) if mode == "schedule" else None
+            veto = float(os.environ.get("VETO_HOURS", "3"))
+            publish_at = (next_publish_time(os.environ.get("PUBLISH_TIME", "09:00"), veto)
+                          if mode == "schedule" else None)
             video = g.upload_video(rep["video"], meta["title"], meta["description"], meta["tags"],
                                    privacy="private", publish_at=publish_at)
             vid = video["id"]
@@ -161,10 +196,17 @@ def run_drive(dry_run):
             ok_t, msg = g.set_thumbnail(vid, rep["thumbnail"])
             if not ok_t:
                 print(f"thumbnail not set (needs a phone-verified channel?): {msg}")
-            print(f"uploaded {url} ({'scheduled ' + publish_at if publish_at else 'private — approve in YouTube Studio'})")
+            print(f"uploaded {url} ({'scheduled ' + publish_at if publish_at else 'private'})")
             plan.update(status="uploaded", video_id=vid, video_url=url, publish_at=publish_at,
                         uploaded=now.strftime("%Y-%m-%dT%H:%M:%SZ"))
             log_history(plan, meta, url)
+            if publish_at:
+                notify.alert(f"short:{plan['slug']}",
+                             f"Goes public {az_label(publish_at)}: {meta['title'].replace(' #shorts', '')}",
+                             f"Nothing to do — it posts itself. Watch it here: {url} (or in Drive: "
+                             f"{drive_vid.get('webViewLink', 'Internet Ranked Done')}).\n\n**To skip it:** YouTube "
+                             f"Studio app › this Short › Visibility › Private (or delete it) before then."
+                             f"{length_note}\n\nThis issue closes itself once the Short is live.")
 
         plan.update(title_final=meta["title"], credits=meta["credits"],
                     edit=[{k: o[k] for k in ("rank", "start", "end")} | {"file": os.path.basename(o["src"])}
